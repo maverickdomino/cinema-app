@@ -1,9 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import * as firebase from 'firebase';
+import firebase from 'firebase';
 
 const config = {
 	apiKey: "AIzaSyBZSOCqbiLgzpAqRz6KiPnjhSPFn0hXJBA",
@@ -14,6 +9,4 @@ const config = {
     messagingSenderId: "626637546715"
 };
 firebase.initializeApp(config);
-
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+export default firebase;
