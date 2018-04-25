@@ -16,14 +16,21 @@ class AuthForm extends Component {
     }
 
     handleSignup(e){
+      //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
+      const promise = auth.createUserWithEmailAndPassword(textEmail,textPassword);
       console.log(`Email: ${textEmail} passw: ${textPassword}`)
+      promise.catch((e) => alert(e.message));
     }
     handleLogin(e){
       const {textEmail,textPassword} = this.state;
-      const promise = auth.signInWithEmailAndPassword(textEmail,textPassword)
+      const promise = auth.signInWithEmailAndPassword(textEmail,textPassword);
       promise.catch((e) => alert(e.message));
     }
+    //checking if the user was already signed in
+    /*firebase.auth().onAuthStateChanged((firebaseUser) =>{
+      firebaseUser ? console.log(firebaseUser): console.log('not looged');
+    })*/
     handleChange(e){
       this.setState({[e.target.name]: e.target.value});
     } 
