@@ -8,5 +8,6 @@ const config = {
     storageBucket: "adroit-lantern-169718.appspot.com",
     messagingSenderId: "626637546715"
 };
+
 firebase.initializeApp(config);
 export default firebase;
