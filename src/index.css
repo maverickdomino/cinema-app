@@ -3,3 +3,51 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+}
+.navbar{
+  display: flex;
+  width: 100%;
+  background-color: #474787;
+  color: white;
+  justify-content: flex-end;
+}
+
+li{
+  display: inline-block;
+  padding: 20px 30px;
+}
+
+.wrapper{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.section-upcoming{
+  width: 50%;
+  height: auto;
+}
+.section-live{
+  width: 50%;
+  height: auto;
+}
+.movies-live-list{
+  width: 80%;
+  vertical-align: middle;
+  border: 2px solid black;
+  margin: 10px;
+}
+.movie-desc {
+  float: right;
+  width: 250px;
+  padding: 40px 25% 0 0;
+  text-align: left;
+}
+li > img {
+  float: left;
+}
