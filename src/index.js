@@ -12,6 +12,7 @@ class App extends Component {
             <React.Fragment>
             <div className="container">
                 <div className="navbar">
+                <img id="logo" src="images/regal_cinemas.png" width="120" height="120" alt="cinema_logo" />
                     <ul>
                         <li>Repertuar</li>
                         <li>Rezerwuj bilet</li>

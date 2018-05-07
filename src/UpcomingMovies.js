@@ -20,7 +20,7 @@ class UpcomingMovies extends Component {
             <React.Fragment>
              <ul>
              {results.map( movie =>
-                <li className="movies-live-list" key={movie.title}><img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="100" alt={movie.title}/><span className="movie-desc">Tytuł: {movie.title}<br /><hr />  Data premiery: {movie.release_date}<br />
+                <li className="movies-live-list" key={movie.title}><img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="150" alt={movie.title}/><span className="movie-desc">Tytuł: {movie.title}<br />  Data premiery: {movie.release_date}<br />
                 test<br /> test2 <br />test3</span></li>
             )}
              </ul>
