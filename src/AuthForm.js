@@ -1,18 +1,21 @@
-import React, { Component } from 'react';
-import './AuthForm.css';
-import firebase from './firebase.js';
+import React, { Component } from "react";
+import "./AuthForm.css";
+import {app, facebookProv} from "./firebase.js";
+import fb from "./fb.png";
 
-const auth = firebase.auth();
+const auth = app.auth();
 class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state = {
       textEmail: "",
-      textPassword: ""
+      textPassword: "",
+      label: ""
     };
     this.handleSignup = this.handleSignup.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleLogWithFb = this.handleLogWithFb.bind(this); 
     }
 
     handleSignup(e){
@@ -20,34 +23,41 @@ class AuthForm extends Component {
       const {textEmail,textPassword} = this.state;
       const promise = auth.createUserWithEmailAndPassword(textEmail,textPassword);
       console.log(`Email: ${textEmail} passw: ${textPassword}`)
-      promise.catch((e) => alert(e.message));
+      promise.catch((e) => this.setState({label:e.message}));
     }
     handleLogin(e){
       const {textEmail,textPassword} = this.state;
       const promise = auth.signInWithEmailAndPassword(textEmail,textPassword);
-      promise.catch((e) => alert(e.message));
+      promise.catch((e) => this.setState({label:e.message}));
     }
     //checking if the user was already signed in
     /*firebase.auth().onAuthStateChanged((firebaseUser) =>{
-      firebaseUser ? console.log(firebaseUser): console.log('not looged');
+      firebaseUser ? console.log(firebaseUser): console.log("not looged");
     })*/
     handleChange(e){
       this.setState({[e.target.name]: e.target.value});
+    }
+
+    handleLogWithFb(e){
+      const promise = app.auth().signInWithPopup(facebookProv)
+        promise.catch((e) => this.setState({label:e.message}));
     } 
+
   render() {
     return (
-      <div className='app'>
+      <div className="app">
         <header>
-            <div className='wrapper'>
+            <div className="wrapper">
               <h1>Login/register</h1>
             </div>
         </header>
-        <section className='container'>
+        <section className="container">
         <div className="logForm">
+        <label className="errorBox">{this.state.label}</label>
             <input 
               type="email" 
               name="textEmail" 
-              placeholder="What's your name?"
+              placeholder="Whats your name?"
               value={this.state.textEmail}
               onChange={this.handleChange} 
             />
@@ -64,6 +74,10 @@ class AuthForm extends Component {
               <br/>
             <button type="button" onClick={this.handleLogin}>
               Log in
+            </button>
+            <br/>
+            <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
+              log with facebook
             </button>
           </div>    
         </section>
