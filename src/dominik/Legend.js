@@ -4,7 +4,7 @@ import './dominikStyles.css';
 class Legend extends Component {
 	render() {
 		return(
-			<div>Legend</div>
+			<div class='legend'>Legend</div>
 		);
 		
 	}

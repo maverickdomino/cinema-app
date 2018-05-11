@@ -1,1 +1,116 @@
+body {
+	font-size: 100%;
+}
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.screen
+{
+	background-color: #AAAAAA;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	padding-top: 0.1875em;
+	padding-bottom: 0.1875em;
+	margin: auto;
+	margin-bottom: 2em;
+}
+
+.seat
+{
+	
+	background-color: #3355FF;
+	width: 4.16vw;
+	height: 4.16vw;
+	border-radius: 0.1em;
+	float: left;
+	margin: 0.26vw;
+	color: white;
+	text-align: center;
+	font-size: 3.33vw;
+}
+
+.row
+{
+	clear: both;
+}
+
+.legend
+{
+	clear: both;
+	
+}
+
+.seat:hover
+{
+	background-color: #0099FF;
+	cursor: pointer;
+}
+
+#rowsContainer
+{
+	margin: auto;
+	width: 75.2vw;
+}
+
+@media only screen and (min-width: 300px) {
+    .seat
+{
+	
+	font-size: 10px;
+}
+	
+}
+
+
+@media only screen and (max-width: 600px) {
+    .screen {
+		width: 70%;
+    }
+	
+}
+
+@media only screen and (min-width: 600px) {
+    .screen {
+		width: 60%;
+	}
+	
+	.seat
+	{
+		width: 25px;
+		height: 25px;
+		margin: 1.6px;
+		
+	}
+	
+	#rowsContainer
+	{
+		width: 28.2em;
+	}
+	
+}
+
+@media only screen and (min-width: 768px) {
+    .screen {
+		width: 50%;
+	}
+	
+	
+} 
+
+@media only screen and (min-width: 992px) {
+    .screen {
+		width: 38%;
+	}
+} 
+
+
+@media only screen and (min-width: 1200px) {
+    .screen {
+		width: 30%;
+	}
+}
