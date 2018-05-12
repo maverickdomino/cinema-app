@@ -1,48 +1,69 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import ReactModal from 'react-modal';
+import { Route, Link } from "react-router-dom";
+import MovieDetail from './MovieDetail';
 
 class LiveMovies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiData: []
+            apiData: [],
+            movieDetail: [],
+            castDetail: [],
+            showModal: false
         }
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
     }
+    handleOpenModal () {
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal () {
+        this.setState({ showModal: false });
+    }
+
     componentDidMount() {
-        // fetch('https://api.themoviedb.org/3/movie/76341?api_key=4ed1fcc5ffc6bf4d248c44f2928822e8')
            fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=4ed1fcc5ffc6bf4d248c44f2928822e8&language=pl-PL')
         .then(response => response.json())
         .then(data => this.setState({ apiData: data.results }));
     }
 
+    fetchData(value){
+         fetch(`https://api.themoviedb.org/3/movie/${value}?api_key=4ed1fcc5ffc6bf4d248c44f2928822e8&language=pl-PL`)
+        .then(response => response.json())
+        .then(data => this.setState({ movieDetail: data }));
+        fetch(`https://api.themoviedb.org/3/movie/${value}/credits?api_key=4ed1fcc5ffc6bf4d248c44f2928822e8`)
+        .then(response => response.json())
+        .then(data => this.setState({ castDetail: data }));
+    }
+
     render() {
         const results = this.state.apiData;
+        console.log(this.state.movieDetal, this.state.castDetail)
         return (
-            <Router>
             <React.Fragment>
-            <Route path="/" exact render={() => {
-                return (
-                <ul>
+                <div className="image-container">
+        <ReactModal
+           isOpen={this.state.showModal}
+           style={{content: { overflow: 'hidden'}, overlay: {backgroundColor: 'rgba(255, 255, 255, 0.3)'}}}
+           ariaHideApp={false}
+           contentLabel="Movie Details Modal"
+        >
+        <MovieDetail {...this.state.movieDetail} {...this.state.castDetail}
+                    handleClose={this.handleCloseModal} />
+        </ReactModal>
                 {results.map( movie =>
-                   <li className="movies-live-list" key={movie.title}><img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="150" alt={movie.title}/><span className="movie-desc">Tytuł: {movie.title}<br />  Data premiery: {movie.release_date}<br />
-                   Średnia ocen: {movie.vote_average}<br />Ilość głosów: {movie.vote_count} <br /><br /><br /><Link to={`/${movie.id}`}>Czytaj więcej...</Link></span></li>
-               )}
-                </ul>
-            );
-            }} />
-             <Route path="/:id" exact render={(props)=>{
-                 const selectedMovie = results.filter(movie => movie.id === parseInt(props.match.params.id) );
-                 console.log(selectedMovie);
-                 console.log(selectedMovie.id);
-                 return (
-                     <div>  {selectedMovie.id} </div>
-                    )
-                }} />
+                    <Link key={movie.id} onClick={() => {this.fetchData(movie.id);this.handleOpenModal()}}  to={`/${movie.id}`}>
+                   <img key={movie.title} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="170" alt={movie.title}/>
+                   </Link>
+                )}
+                </div>
                 </React.Fragment>
-             </Router>
-        )
+            )
+        }
     }
-}
+
 
 export default LiveMovies;

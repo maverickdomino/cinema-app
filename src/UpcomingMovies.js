@@ -15,7 +15,7 @@ class UpcomingMovies extends Component {
     }
 
     render() {
-        const results = this.state.apiData.filter(filteredMovies => filteredMovies.popularity < 100 );
+        const results = this.state.apiData.filter(filteredMovies => filteredMovies.popularity < 100);
         return (
             <React.Fragment>
              <ul>
