@@ -10,7 +10,8 @@ class AuthForm extends Component {
       textEmail: "",
       textPassword: "",
       infMessage: "",
-      className: "errorBox"
+      className: "errorBox",
+      authenticated: false
     }
 
     this.handleSignup = this.handleSignup.bind(this);
@@ -22,12 +23,15 @@ class AuthForm extends Component {
     handleSignup(e){
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
-      const promise = auth.createUserWithEmailAndPassword(textEmail,textPassword);
-      promise.then(() => this.setState({
+     auth.createUserWithEmailAndPassword(textEmail,textPassword)
+      .then(() => this.setState({
         infMessage:"registre succesfully",
-        className:"errorBox-active"
+        className:"errorBox-active",
+        authenticated:true
       }))
-      promise.catch((e) => this.setState({infMessage:e.message}));
+      .catch((e) => this.setState({
+        className:"errorBox-active",  
+        infMessage:e.message}))
     }
 
     handleLogin(e){
@@ -35,6 +39,7 @@ class AuthForm extends Component {
       auth.signInWithEmailAndPassword(textEmail,textPassword)
         .then((result,err) =>{
           if(!err){
+          this.setState({authenticated:true})
           this.props.history.push('/userview');
           }
         })
@@ -43,9 +48,9 @@ class AuthForm extends Component {
           infMessage:e.message
         }))
       }
-      
+
     //checking if the user was already signed in
-    /*firebase.auth().onAuthStateChanged((firebaseUser) =>{
+    /*auth.onAuthStateChanged((firebaseUser) =>{
       firebaseUser ? console.log(firebaseUser): console.log("not looged");
     })*/
 
@@ -72,7 +77,7 @@ class AuthForm extends Component {
             <input 
               type="email" 
               name="textEmail" 
-              placeholder="Whats your name?"
+              placeholder="enter your e-mail"
               value={this.state.textEmail}
               onChange={this.handleChange} 
             />
