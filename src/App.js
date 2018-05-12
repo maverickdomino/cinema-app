@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
-import AuthForm from './AuthForm'
+import AuthForm from './AuthForm';
+import UserView from './userView';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <AuthForm/>
-      </div>
+    	<Router>
+	      <Switch>
+	        <Route exact path = "/" render = {props => <AuthForm {...props}/>}/>
+	        <Route exact path = "/userview" render = {() => <UserView/>}/>
+	      </Switch>
+	    </Router>  
     );
   }
 }
