@@ -5,6 +5,7 @@ import LiveMovies from './LiveMovies';
 import './index.css';
 import './MediaQueries.css';
 import UpcomingMovies from './UpcomingMovies';
+import AuthForm from './AuthForm';
 
 class App extends Component {
 
@@ -14,21 +15,20 @@ class App extends Component {
             <div className="container">
                 <div className="navbar">
                     <ul>
+                        <li><Link to="/">Strona główna</Link></li>
                         <li><Link to="/repertuar">Repertuar</Link></li>
                         <li>Rezerwuj bilet</li>
-                        <li>Loguj</li>
+                        <li><Link to="/loguj">Loguj</Link></li>
                         <li>Rejestruj</li>
                     </ul>
                 </div>
                 <div className="wrapper">
+                    <Route path="/loguj" exact component={AuthForm} />
+                    <Route path="/" exact component={LiveMovies} />
 
-                    <div className="section-live">
-                    <div className="sections-title">FILMY AKTUALNIE GRANE</div>
-                        <LiveMovies />
                     </div>
 
                 </div>
-            </div>
             </Router>
         )
     }

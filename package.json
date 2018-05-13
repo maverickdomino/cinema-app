@@ -17,6 +17,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "firebase": "^5.0.2",
     "gh-pages": "^1.1.0",
     "react-modal": "^3.4.4",
     "react-router-dom": "^4.2.2"

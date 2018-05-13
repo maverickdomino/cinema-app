@@ -9,6 +9,13 @@ class MovieDetail extends Component {
             isLoaded: false
         }
     }
+
+    formatNumber(number) {
+        let newNumber = number.toString();
+        let numLength = Math.floor(newNumber.length/3);
+        let luls = newNumber.slice(0, -3);
+        console.log(newNumber, numLength, luls);
+    }
     /* componentDidUpdate() {
         fetch(`https://image.tmdb.org/t/p/original${this.props.backdrop_path}`)
         .then(response => response.json())
@@ -17,7 +24,7 @@ class MovieDetail extends Component {
     // --------------------- try to implement conditional rendering for images --------------------
     // {this.state.movie.genres.map( genre => <span>{genre.name}</span>)}
     render() {
-        console.log(this.props);
+        console.log(this.formatNumber(100023));
          if (!this.props.genres || !this.props.cast) return <div>Loading...</div>
          return (
              <React.Fragment>
