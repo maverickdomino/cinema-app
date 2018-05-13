@@ -17,7 +17,7 @@ class AuthForm extends Component {
     this.handleSignup = this.handleSignup.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleLogWithFb = this.handleLogWithFb.bind(this); 
+    this.handleLogWithFb = this.handleLogWithFb.bind(this);
     }
 
     handleSignup(e){
@@ -30,7 +30,11 @@ class AuthForm extends Component {
         authenticated:true
       }))
       .catch((e) => this.setState({
+<<<<<<< HEAD
         className:"errorBox-active",  
+=======
+        className:"errorBox-active",
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
         infMessage:e.message}))
     }
 
@@ -67,7 +71,7 @@ class AuthForm extends Component {
     return (
       <div className="app">
         <header>
-            <div className="wrapper">
+            <div className="wrapper-auth">
               <h1>Login/register</h1>
             </div>
         </header>
@@ -87,6 +91,28 @@ class AuthForm extends Component {
               placeholder="What is you password"
               value={this.state.textPassword}
               onChange={this.handleChange}  
+=======
+            <div className="wrapper-auth">
+              <h1>Login/register</h1>
+            </div>
+        </header>
+        <section className="container-auth">
+        <div className="logForm">
+        <label className={this.state.className}>{this.state.infMessage}</label>
+            <input
+              type="email"
+              name="textEmail"
+              placeholder="enter your e-mail"
+              value={this.state.textEmail}
+              onChange={this.handleChange}
+            />
+            <input
+              type="password"
+              name="textPassword"
+              placeholder="What is you password"
+              value={this.state.textPassword}
+              onChange={this.handleChange}
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
             />
             <button type="button" onClick={this.handleSignup}>
               Sign Up
@@ -99,7 +125,11 @@ class AuthForm extends Component {
             <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
               log with facebook
             </button>
+<<<<<<< HEAD
           </div>    
+=======
+          </div>
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
         </section>
       </div>
     );
