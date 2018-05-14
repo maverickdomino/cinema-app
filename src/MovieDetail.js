@@ -43,7 +43,7 @@ class MovieDetail extends Component {
             <span className="titles">Data premiery:</span>{this.props.release_date}<br /><br />
             <span className="titles">Obsada:</span>{this.props.cast[0].name}, {this.props.cast[1].name}<br /><br />
             <span className="titles">Opis:</span>{this.props.overview}<br /><br />
-            <span className="titles">Budżet:</span>{this.props.budget == 0 ? <span>Brak informacji</span> : <span>{this.props.budget} $</span>} <br /><br />
+            <span className="titles">Budżet:</span>{this.props.budget === 0 ? <span>Brak informacji</span> : <span>{this.props.budget} $</span>} <br /><br />
                             <span className="titles">Czas trwania:</span> {this.props.runtime} min
                     </div>
                 </div>

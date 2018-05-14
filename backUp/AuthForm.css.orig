@@ -1,17 +1,26 @@
-/*body {
+<<<<<<< HEAD
+body {
   font-family: 'Open Sans', sans-serif;
   background-color: #fff;
 }
-*/
+
+=======
+/* body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #fff;
+} */
 .app{
   width: 100%;
 }
-
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
 header {
-  color: black;
+  color: #fff;
+  background-color: #103D5D;
   padding: 33px 0 25px 15px;
+<<<<<<< HEAD
+=======
   width: 100%;
-  text-align: center;
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
 }
 
 header h1 {
@@ -21,9 +30,17 @@ header h1 {
   display: inline-block;
   margin: 0;
   vertical-align: middle;
+<<<<<<< HEAD
+  
+}
+
+.container {
+=======
+
 }
 
 .container-auth {
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
   display: flex;
   max-width: 1100px;
   margin: 0 auto;
@@ -34,7 +51,11 @@ header h1 {
   width: 100vw;
 }
 
+<<<<<<< HEAD
+.wrapper {
+=======
 .wrapper-auth {
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
   max-width: 1100px;
   margin: 0 auto;
 }
@@ -58,7 +79,11 @@ input {
   padding: 18px 22px;
   font-size: 16px;
   margin-bottom: 17px;
+<<<<<<< HEAD
+  border: 0;  
+=======
   border: 0;
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
 }
 
 h2 {
@@ -75,7 +100,7 @@ form button {
 button {
   border-radius: 2px;
   min-width: 88px;
-  background-color: #1a70ad /*#FA6900*/;
+  background-color: #FA6900;
   cursor: pointer;
   border: 0;
   min-width: 120px;
@@ -84,6 +109,18 @@ button {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   padding: 10px 6px;
 }
+
+<<<<<<< HEAD
+img {
+  display: flex;
+  width:3vw; 
+}
+=======
+/* img {
+  display: flex;
+  width:3vw;
+} */
+>>>>>>> 37af726c986f52aac8c1d4f3ea6b93a3ab08ec0d
 
 .errorBox{
   display: none;

@@ -14,10 +14,12 @@ body {
   flex-wrap: wrap;
 
 }
+
+/*=========NAV==============================*/
 .navbar{
   display: flex;
   width: 100%;
-  background-color: #48466D;
+  background-color: #1a70ad;
   color: white;
   justify-content: flex-end;
   font-family: 'Montserrat', sans-serif;
@@ -25,6 +27,20 @@ body {
   font-weight: bold;
   letter-spacing: 2px;
   padding-right: 5%;
+}
+
+.navbar > ul > li > a{
+  text-decoration: none;
+}
+.navbar > ul > li > a:visited{
+  color:white;
+}
+
+.navbar .navList .activeNav{
+  color:#7bbded;
+}
+.navbar > ul > li > a:hover{
+  color:black;
 }
 
 li{
