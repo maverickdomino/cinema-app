@@ -26,6 +26,10 @@ body {
   letter-spacing: 2px;
   padding-right: 5%;
 }
+.navbar a{
+text-decoration: none;
+color: #ffff;
+}
 
 li{
   display: inline-block;

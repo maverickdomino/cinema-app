@@ -6,6 +6,7 @@ import './index.css';
 import './MediaQueries.css';
 import UpcomingMovies from './UpcomingMovies';
 import AuthForm from './AuthForm';
+import Repertuar from './Repertuar';
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
                 <div className="wrapper">
                     <Route path="/loguj" exact component={AuthForm} />
                     <Route path="/" exact component={LiveMovies} />
+                    <Route path="/repertuar" exact component={Repertuar} />
 
                     </div>
 
