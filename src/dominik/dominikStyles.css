@@ -23,7 +23,7 @@ ul {
 .seat
 {
 	
-	background-color: #3355FF;
+	/*background-color: #3355FF;*/
 	width: 4.16vw;
 	height: 4.16vw;
 	border-radius: 0.1em;
@@ -34,6 +34,11 @@ ul {
 	font-size: 3.33vw;
 }
 
+.seat:hover 
+{
+	cursor: pointer;
+}
+
 .row
 {
 	clear: both;
@@ -42,25 +47,66 @@ ul {
 .legend
 {
 	clear: both;
-	
+	margin-top: 1em;
 }
 
-.seat:hover
+.legendTitle
 {
-	background-color: #0099FF;
-	cursor: pointer;
+	text-align: center;
+	margin-bottom: 0.5em;
+	font-weight: bold;
+}
+
+.legendText
+{
+	float:left;
+	margin-left: 0.5em;
+	font-size: 13px;
+}
+
+.legendSeat
+{
+		width: 13px;
+		height: 13px;
+		background-color: blue;
+		float: left;
+}
+
+.legendRow 
+{
+	clear: both;
+	margin-left: 1em;
+}
+
+.legendFree
+{
+	background-color: #3355FF;
+}
+
+.legendOccupied
+{
+	background-color: red;
+}
+
+.legendChosen 
+{
+	background-color: green;
 }
 
 #rowsContainer
 {
 	margin: auto;
-	width: 75.2vw;
+}
+
+.rowsInnerContainer
+{
+	display: table;
+	margin: auto;
 }
 
 @media only screen and (min-width: 300px) {
     .seat
 {
-	
 	font-size: 10px;
 }
 	
@@ -92,11 +138,59 @@ ul {
 		width: 28.2em;
 	}
 	
+	.legendRow
+	{
+		float: left;
+		clear: none;
+		width: 33.33%;
+		margin-left: 0;
+	} 
+	
+	.innerLegendRow
+	{
+		display: table;
+		margin: 0 auto;
+	}
+
+	.legendText
+	{
+		font-size: 15px;
+	}
+
+	.legendSeat
+	{
+		width: 15px;
+		height: 15px;
+	}
+	
+	.legend
+	{
+		margin-top: 2em;
+	}
+	
 }
 
 @media only screen and (min-width: 768px) {
     .screen {
 		width: 50%;
+	}
+	
+	.legendRows
+	{
+		width: 70%;
+		margin: auto;
+	}
+	
+	.legendText
+	{
+
+		font-size: 16px;
+	}
+
+	.legendSeat
+	{
+		width: 16px;
+		height: 16px;
 	}
 	
 	

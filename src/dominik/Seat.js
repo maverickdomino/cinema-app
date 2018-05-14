@@ -4,10 +4,6 @@ import './dominikStyles.css';
 class Seat extends Component {
 	constructor(props) {
     super(props);
-    this.state = {free: true,
-					booked: false,
-					chosen: false,
-					bgColor: '#3355FF'};
 	this.handleClick = this.handleClick.bind(this);
 	this.handleMouseOver = this.handleMouseOver.bind(this);
 	this.handleMouseOut = this.handleMouseOut.bind(this);
@@ -15,48 +11,25 @@ class Seat extends Component {
   
   handleClick()
   {
-	  if(this.state.free)
-	  {
-		  this.setState({
-			free: false,
-			chosen: true,
-			bgColor: 'green',
-		  }); 
-	  }
-	  if(this.state.chosen)
-	  {
-		  this.setState({
-			  chosen: false,
-			  free: true,
-			  bgColor: '#3355FF',
-		  });
-	  }
+	 this.props.onStateChange(this.props.number);
   }
   
   handleMouseOver()
   {
-	 if(this.state.free)
-	 {
-		 this.setState({
-			 bgColor: 'blue',
-		 });
-	 }
+	  this.props.onMouseOverFreePlace(this.props.number);
+	  
   }
   
    handleMouseOut()
   {
-	 if(this.state.free)
-	 {
-		 this.setState({
-			 bgColor: '#3355FF',
-		 });
-	 }
+	  this.props.onMouseOutFreePlace(this.props.number);
+	 
   }
 	
 	render() {
 
 		return(
-			<div class='seat' style={{backgroundColor: this.state.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number}</div>
+			<div class='seat' style={{backgroundColor: this.props.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number+1}</div>
 			
 		);
 	}
