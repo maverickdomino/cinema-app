@@ -1,6 +1,5 @@
 {
-  "homepage": "http://radDunin.github.io/cinema-app",
-  "name": "cinema-app",
+  "name": "rezerwacja",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
