@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-//import './index.css';
-import CinemaRoom from './CinemaRoom';
-//import registerServiceWorker from './registerServiceWorker';
-
-ReactDOM.render(<CinemaRoom />, document.getElementById('root'));
-//registerServiceWorker();
-=======
 import LiveMovies from './LiveMovies';
 import './index.css';
 import './MediaQueries.css';
 import UpcomingMovies from './UpcomingMovies';
 import AuthForm from './AuthForm';
 import Repertuar from './Repertuar';
+
+//import CinemaRoom from './CinemaRoom';
+//import registerServiceWorker from './registerServiceWorker';
+
+//ReactDOM.render(<CinemaRoom />, document.getElementById('root'));
 
 class App extends Component {
 
@@ -49,4 +46,4 @@ class App extends Component {
 
 
 ReactDOM.render(<App />, document.getElementById('root'));
->>>>>>> ca57b2aaebc6dbc8439224e9cca66bf36a54b640
+//>>>>>>> ca57b2aaebc6dbc8439224e9cca66bf36a54b640
