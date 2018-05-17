@@ -3,6 +3,7 @@ import './dominikStyles.css';
 import Screen from './Screen.js';
 import RowsContainer from './RowsContainer.js';
 import Legend from './Legend.js';
+import {app, facebookProv} from './firebase.js';
 
 class CinemaRoom extends Component {
 	constructor(props) {
@@ -12,8 +13,12 @@ class CinemaRoom extends Component {
 	for(let i = 0; i < 100; i++)
 	{
 		seats.push(true);
-		bgColors.push('#3355FF');
 	}
+	for(let i = 0; i < 100; i++)
+	{
+			bgColors.push('#3355FF');
+	}
+
 	this.state = {
 		seats: seats,
 		bgColors: bgColors,
@@ -22,9 +27,51 @@ class CinemaRoom extends Component {
 	this.handleStateChange = this.handleStateChange.bind(this);
 	this.handleOnMouseOverFreePlace = this.handleOnMouseOverFreePlace.bind(this);
 	this.handleOnMouseOutFreePlace = this.handleOnMouseOutFreePlace.bind(this);
+	this.reservation = this.reservation.bind(this);
 	}
 	
+	componentDidMount(){
+		let seats = [];
+		let bgColors = [];
+		let context = this;
+		//Przy routingu trzeba tu podmienić wartość "-LCVoTIHGKwx9-gUvy7Z" na wartość dla kliknietego filmu		
+		let movieID = "-LCVoTIHGKwx9-gUvy7Z";
+		const ref = app.database().ref().child("seances").child(movieID);
+		
+		ref.on('value', function(snapshot){
+			console.log(snapshot.val().sits);
+			seats = snapshot.val().sits;
+			
+			context.setState(function(prevState) {
+				for(let i = 0; i < 100; i++)
+				{
+					if(seats[i] === true)
+						bgColors.push('#3355FF');
+					else
+						bgColors.push('red');
+				}
+				return {
+					seats: seats,
+					bgColors: bgColors,};
+			});
+		}, function (errorObject) {
+  console.log("The read failed: " + errorObject.code);
+	});
+}
+
+/*reserveSit(number){
+		//Przy routingu trzeba tu podmienić wartość "-LCVoTIHGKwx9-gUvy7Z" na wartość dla kliknietego filmu	
+		let movieID = "-LCVoTIHGKwx9-gUvy7Z";
+		const ref = app.database().ref().child("seances").child(movieID);
+		ref.child("sits").child(number).set(true);
+	}*/
 	
+reservation(number, value){
+		let movieID = "-LCVoTIHGKwx9-gUvy7Z";
+		const ref = app.database().ref().child("seances").child(movieID);
+		ref.child("sits").child(number).set(value);
+}
+
 	handleStateChange(row, col)
   {
 	if(this.state.seats[row*10+col])
@@ -43,7 +90,7 @@ class CinemaRoom extends Component {
 				copySeats[row*10+col] = false;
 				copyBgColors[row*10+col] = 'green';
 				copyChosenSeats.push({row: row, seat: col});
-				
+				this.reservation(row*10+col,false);
 			return {
 				seats: copySeats,
 				bgColors: copyBgColors,

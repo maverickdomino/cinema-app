@@ -7,8 +7,7 @@ import './MediaQueries.css';
 import UpcomingMovies from './UpcomingMovies';
 import AuthForm from './AuthForm';
 import Repertuar from './Repertuar';
-
-//import CinemaRoom from './CinemaRoom';
+import CinemaRoom from './CinemaRoom';
 //import registerServiceWorker from './registerServiceWorker';
 
 //ReactDOM.render(<CinemaRoom />, document.getElementById('root'));
@@ -23,7 +22,7 @@ class App extends Component {
                     <ul>
                         <li><Link to="/">Strona główna</Link></li>
                         <li><Link to="/repertuar">Repertuar</Link></li>
-                        <li>Rezerwuj bilet</li>
+                        <li><Link to="/rezerwacja">Rezerwuj bilet</Link></li>
                         <li><Link to="/loguj">Loguj</Link></li>
                         <li>Rejestruj</li>
                     </ul>
@@ -32,6 +31,7 @@ class App extends Component {
                     <Route path="/loguj" exact component={AuthForm} />
                     <Route path="/" exact component={LiveMovies} />
                     <Route path="/repertuar" exact component={Repertuar} />
+					<Route path="/rezerwacja" exact component={CinemaRoom} />
 
                     </div>
 
