@@ -6,12 +6,42 @@ import './index.css';
 import './MediaQueries.css';
 import AuthForm from './AuthForm';
 import CinemaRoom from './CinemaRoom';
+import {app, facebookProv} from './firebase.js';
+import PrivateRoute from "./PrivateRoute"
+
+const auth = app.auth();
 
 class App extends Component {
+      
+    state = { loading: true, authenticated: false, user: null };
+      
+      componentWillMount() {
+
+            auth.onAuthStateChanged(user => {
+            if (user) {
+              this.setState({
+                authenticated: true,
+                currentUser: user,
+                loading: false
+              });
+            } else {
+              this.setState({
+                authenticated: false,
+                currentUser: null,
+                loading: false
+              });
+            }
+          });
+        }
 
     render() {
+        const { authenticated, loading } = this.state;
+        if (loading) {
+            return <p>Loading..</p>;
+        }
+
         return (
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
             <div className="container">
                 <div className="navbar">
                     <ul className="navList">
@@ -23,10 +53,10 @@ class App extends Component {
                 </div>
                 <div className="wrapper">
                 <Switch>
-                    <Route exact path="/autoryzacja" component={AuthForm} />
-                    <Route exact path="/" component={LiveMovies} />
-                    <Route exact path="/rezerwacja" component={CinemaRoom} />
+                    <Route path="/autoryzacja" component={AuthForm} />
+                    <Route exact path="/" component={LiveMovies} />       
                 </Switch>
+                <PrivateRoute exact path="/rezerwacja" component={CinemaRoom} authenticated={authenticated}/>
                 </div>
             </div>
             </Router>

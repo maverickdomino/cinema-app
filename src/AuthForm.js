@@ -19,6 +19,7 @@ class AuthForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleLogWithFb = this.handleLogWithFb.bind(this);
     }
+     // compones
 
     handleSignup(e){
       //TODO: check 4 real email
@@ -27,7 +28,6 @@ class AuthForm extends Component {
       .then(() => this.setState({
         infMessage:"registre succesfully",
         className:"errorBox-active",
-        authenticated:true
       }))
       .catch((e) => this.setState({
         className:"errorBox-active",
@@ -39,8 +39,7 @@ class AuthForm extends Component {
       auth.signInWithEmailAndPassword(textEmail,textPassword)
         .then((result,err) =>{
           if(!err){
-          this.setState({authenticated:true})
-          this.props.history.push('/userview');
+            this.props.history.push('/rezerwacja');
           }
         })
         .catch((e) => this.setState({
