@@ -7,7 +7,8 @@ import './MediaQueries.css';
 import AuthForm from './AuthForm';
 import CinemaRoom from './CinemaRoom';
 import {app, facebookProv} from './firebase.js';
-import PrivateRoute from "./PrivateRoute"
+import PrivateRoute from './PrivateRoute';
+import Information from './Information';
 
 const auth = app.auth();
 
@@ -53,8 +54,9 @@ class App extends Component {
                 </div>
                 <div className="wrapper">
                 <Switch>
+                    <Route exact path="/" component={LiveMovies} />
                     <Route path="/autoryzacja" component={AuthForm} />
-                    <Route exact path="/" component={LiveMovies} />       
+                    <Route path="/informacja" component={Information} />
                 </Switch>
                 <PrivateRoute exact path="/rezerwacja" component={CinemaRoom} authenticated={authenticated}/>
                 </div>

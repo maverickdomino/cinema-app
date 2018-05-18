@@ -11,7 +11,6 @@ class AuthForm extends Component {
       textPassword: "",
       infMessage: "",
       className: "errorBox",
-      authenticated: false
     }
 
     this.handleSignup = this.handleSignup.bind(this);
@@ -19,7 +18,15 @@ class AuthForm extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleLogWithFb = this.handleLogWithFb.bind(this);
     }
-     // compones
+
+   componentWillMount() {
+    auth.onAuthStateChanged(user => {
+      if(user){
+        auth.signOut()
+        .then(console.log("signout"))
+      }
+    })
+  }
 
     handleSignup(e){
       //TODO: check 4 real email
@@ -47,11 +54,6 @@ class AuthForm extends Component {
           infMessage:e.message
         }))
       }
-
-    //checking if the user was already signed in
-    /*auth.onAuthStateChanged((firebaseUser) =>{
-      firebaseUser ? console.log(firebaseUser): console.log("not looged");
-    })*/
 
     handleChange(e){
       this.setState({[e.target.name]: e.target.value});
