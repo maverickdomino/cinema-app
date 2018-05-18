@@ -28,7 +28,7 @@ class App extends Component {
                     <Route exact path="/cinema-app" component={LiveMovies} />
                     <Route path="/cinema-app/user" component={AuthForm} />
                     <Route path="/cinema-app/rezerwacja" component={CinemaRoom} />
-                    <Route path="/cinema-app/userView" component={UserView} />
+                    <Route path="/cinema-app/userview" component={UserView} />
                 </Switch>
                 </div>
             </div>
