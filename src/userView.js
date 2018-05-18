@@ -1,6 +1,6 @@
 import React from 'react';
 //import { StyleSheet, Text, View } from 'react-native';
-import {app, user,facebookProv} from './firebase.js';
+import {app, user, facebookProv} from './firebase.js';
 
 const auth = app.auth();
 class UserView extends React.Component {
