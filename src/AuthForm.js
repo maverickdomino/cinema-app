@@ -69,7 +69,7 @@ class AuthForm extends Component {
       <div className="app">
         <header>
             <div className="wrapper-auth">
-              <h1>Login/register</h1>
+              <h1>Zaloguj/Zarejestruj</h1>
             </div>
         </header>
         <section className="container-auth">
@@ -78,27 +78,27 @@ class AuthForm extends Component {
             <input
               type="email"
               name="textEmail"
-              placeholder="enter your e-mail"
+              placeholder="wpisz swój adres e-mail"
               value={this.state.textEmail}
               onChange={this.handleChange}
             />
             <input
               type="password"
               name="textPassword"
-              placeholder="What is you password"
+              placeholder="wpisz swoje hasło"
               value={this.state.textPassword}
               onChange={this.handleChange}
             />
-            <button type="button" onClick={this.handleSignup}>
-              Sign Up
-            </button>
-              <br/>
             <button type="button" onClick={this.handleLogin}>
-              Log in
+              Zaloguj
             </button>
             <br/>
             <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
-              log with facebook
+              zaloguj się przez facebooka
+            </button>
+              <br/>
+            <button type="button" onClick={this.handleSignup}>
+              Nie masz jeszcze konta?
             </button>
           </div>    
         </section>

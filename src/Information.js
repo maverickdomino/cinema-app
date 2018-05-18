@@ -15,7 +15,7 @@ class Information extends Component {
 	render() {
 		return(
 		<div className="container-auth">
-			<header><h1>Musisz być zalogowany aby móc dokonać rezerwacji</h1></header>
+			<header><h1>Zaloguj się aby móc dokonać rezerwacji</h1></header>
 			<button className="Button" type="button" onClick={this.handleClick}>
               zaloguj się
             </button>

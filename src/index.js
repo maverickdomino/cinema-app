@@ -14,7 +14,12 @@ const auth = app.auth();
 
 class App extends Component {
       
-    state = { loading: true, authenticated: false, user: null };
+    state = { 
+        loading: true, 
+        authenticated: false, 
+        user: null,
+        linkLabel: "Zaloguj/Zarejestruj" 
+    };
       
       componentWillMount() {
 
@@ -23,7 +28,8 @@ class App extends Component {
               this.setState({
                 authenticated: true,
                 currentUser: user,
-                loading: false
+                loading: false,
+                linkLabel: "wyloguj",
               });
             } else {
               this.setState({
@@ -49,7 +55,7 @@ class App extends Component {
                         <li><NavLink exact to="/" activeClassName="activeNav">Strona główna</NavLink></li>
                         <li><NavLink to="/repertuar" activeClassName="activeNav">Repertuar</NavLink></li>
                         <li><NavLink to="/rezerwacja" activeClassName="activeNav">Rezerwuj bilet</NavLink></li>
-                        <li><NavLink to="/autoryzacja" activeClassName="activeNav">Zaloguj/Zarejestruj</NavLink></li>
+                        <li><NavLink to="/autoryzacja" activeClassName="activeNav">{this.state.linkLabel}</NavLink></li>
                     </ul>
                 </div>
                 <div className="wrapper">
