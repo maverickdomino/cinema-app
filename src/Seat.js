@@ -27,13 +27,10 @@ class Seat extends Component {
   }
 	
 	render() {
-
 		return(
-			<div class='seat' style={{backgroundColor: this.props.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number+1}</div>
-			
+			<div class='seat' style={{backgroundColor: this.props.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number+1}</div>	
 		);
 	}
-	
 }
 
 export default Seat;

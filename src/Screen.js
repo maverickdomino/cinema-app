@@ -5,7 +5,7 @@ class Screen extends Component {
 	
   render() {
     return (
-      <div class='screen'>
+      <div className='screen'>
         SCREEN
       </div>
     );

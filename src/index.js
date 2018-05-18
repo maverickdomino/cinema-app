@@ -4,46 +4,53 @@ import ReactDOM from 'react-dom';
 import LiveMovies from './LiveMovies';
 import './index.css';
 import './MediaQueries.css';
-import UpcomingMovies from './UpcomingMovies';
+//import UpcomingMovies from './UpcomingMovies';
 import AuthForm from './AuthForm';
 import Repertuar from './Repertuar';
 import CinemaRoom from './CinemaRoom';
-//import registerServiceWorker from './registerServiceWorker';
-
-//ReactDOM.render(<CinemaRoom />, document.getElementById('root'));
 
 class App extends Component {
+	constructor(props){
+        super(props);
+        this.state = {
+			index: 0,
+			ids: [],
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(index,ids)
+	{
+		this.setState({
+			index: index,
+			ids: ids,
+		});
+	}
 
     render() {
         return (
             <Router>
-            <div className="container">
-                <div className="navbar">
-                    <ul>
-                        <li><Link to="/">Strona główna</Link></li>
-                        <li><Link to="/repertuar">Repertuar</Link></li>
-                        <li><Link to="/rezerwacja">Rezerwuj bilet</Link></li>
-                        <li><Link to="/loguj">Loguj</Link></li>
-                        <li>Rejestruj</li>
-                    </ul>
-                </div>
-                <div className="wrapper">
-                    <Route path="/loguj" exact component={AuthForm} />
-                    <Route path="/" exact component={LiveMovies} />
-                    <Route path="/repertuar" exact component={Repertuar} />
-					<Route path="/rezerwacja" exact component={CinemaRoom} />
-
-                    </div>
-
-                </div>
+				<div className="container">
+					<div className="navbar">
+						<ul>
+							<li><Link to="/">Strona główna</Link></li>
+							<li><Link to="/repertuar">Repertuar</Link></li>
+							<li>Rezerwacja</li>
+							<li><Link to="/loguj">Loguj</Link></li>
+							<li>Rejestruj</li>
+						</ul>
+					</div>
+					<div className="wrapper">
+						<Route path="/loguj" exact component={AuthForm} />
+						<Route path="/" exact component={LiveMovies} />
+						<Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/> }/>
+						<Route path="/rezerwacja" render={(props) => <CinemaRoom {...props} id={this.state.ids[this.state.index]}/> }/>
+					</div>
+				</div>
             </Router>
         )
     }
-
 }
 
-
-
-
 ReactDOM.render(<App />, document.getElementById('root'));
-//>>>>>>> ca57b2aaebc6dbc8439224e9cca66bf36a54b640
+

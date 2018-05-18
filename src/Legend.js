@@ -12,10 +12,8 @@ class Legend extends Component {
 			<div class='legendRow'><div class='innerLegendRow'><div class='legendSeat legendChosen'></div><div class='legendText'>Place chosen</div></div></div>
 			</div>
 		</div>
-		);
-		
-	}
-	
+		);	
+	}	
 }
 
 export default Legend;
