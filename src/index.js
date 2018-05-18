@@ -5,6 +5,7 @@ import LiveMovies from './LiveMovies';
 import './index.css';
 import './MediaQueries.css';
 import AuthForm from './AuthForm';
+import CinemaRoom from './CinemaRoom';
 
 class App extends Component {
 
@@ -14,17 +15,17 @@ class App extends Component {
             <div className="container">
                 <div className="navbar">
                     <ul className="navList">
-                        <li><NavLink to="/" activeClassName="activeNav">Strona główna</NavLink></li>
+                        <li><NavLink exact to="/" activeClassName="activeNav">Strona główna</NavLink></li>
                         <li><NavLink to="/repertuar" activeClassName="activeNav">Repertuar</NavLink></li>
-                        <li>Rezerwuj bilet</li>
-                        <li><NavLink to="/loguj" activeClassName="activeNav">Loguj</NavLink></li>
-                        <li>Rejestruj</li>
+                        <li><NavLink to="/rezerwacja" activeClassName="activeNav">Rezerwuj bilet</NavLink></li>
+                        <li><NavLink to="/autoryzacja" activeClassName="activeNav">Zaloguj/Zarejestruj</NavLink></li>
                     </ul>
                 </div>
                 <div className="wrapper">
                 <Switch>
-                    <Route exact path="/loguj" component={AuthForm} />
+                    <Route exact path="/autoryzacja" component={AuthForm} />
                     <Route exact path="/" component={LiveMovies} />
+                    <Route exact path="/rezerwacja" component={CinemaRoom} />
                 </Switch>
                 </div>
             </div>
