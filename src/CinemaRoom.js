@@ -22,15 +22,19 @@ class CinemaRoom extends Component {
 	this.state = {
 		seats: seats,
 		bgColors: bgColors,
-		chosenSeats: []};
+		chosenSeats: [],
+		canReserve: false};
+		
 		
 	this.handleStateChange = this.handleStateChange.bind(this);
 	this.handleOnMouseOverFreePlace = this.handleOnMouseOverFreePlace.bind(this);
 	this.handleOnMouseOutFreePlace = this.handleOnMouseOutFreePlace.bind(this);
-	this.reservation = this.reservation.bind(this);
+	//this.reservation = this.reservation.bind(this);
+	//this.myFunction = this.myFunction.bind(this);
 	}
 	
 	componentDidMount(){
+		console.log(this.state.chosenSeats);
 		let seats = [];
 		let bgColors = [];
 		let context = this;
@@ -39,7 +43,7 @@ class CinemaRoom extends Component {
 		const ref = app.database().ref().child("seances").child(movieID);
 		
 		ref.on('value', function(snapshot){
-			console.log(snapshot.val().sits);
+			//console.log(snapshot.val().sits);
 			seats = snapshot.val().sits;
 			
 			context.setState(function(prevState) {
@@ -52,11 +56,33 @@ class CinemaRoom extends Component {
 				}
 				return {
 					seats: seats,
-					bgColors: bgColors,};
+					bgColors: bgColors,
+					/*chosenSeats: [],*/
+					canReserve: true};
 			});
 		}, function (errorObject) {
   console.log("The read failed: " + errorObject.code);
 	});
+	
+}
+
+componentDidUpdate(prevProps, prevState)
+{
+	//this.reservation(row*10+col,false);
+}
+
+
+
+myFunction()
+{
+	console.log("bla");
+	let movieID = "-LCVoTIHGKwx9-gUvy7Z";
+		const ref = app.database().ref().child("seances").child(movieID);
+		
+		for(let i = 0; i < 100; i++)
+		{
+			ref.child("sits").child(i).set(true);
+		}
 }
 
 /*reserveSit(number){
@@ -72,10 +98,15 @@ reservation(number, value){
 		ref.child("sits").child(number).set(value);
 }
 
+
 	handleStateChange(row, col)
   {
+	  //console.log(this.state.chosenSeats);
+	if(this.state.canReserve)
+	{
 	if(this.state.seats[row*10+col])
 	  {
+		  console.log(this.state.chosenSeats);
 		if(this.state.chosenSeats.length === 10)
 		{
 			console.log('You can not choose more than 10 seats');
@@ -91,17 +122,18 @@ reservation(number, value){
 				copyBgColors[row*10+col] = 'green';
 				copyChosenSeats.push({row: row, seat: col});
 				this.reservation(row*10+col,false);
+
 			return {
 				seats: copySeats,
 				bgColors: copyBgColors,
 				chosenSeats: copyChosenSeats,
 			};
 			});
-
 		}
 	  }
 	  else
-	  {
+	  {		
+  console.log("blavla");
 		  let copyChosenSeats = this.state.chosenSeats;
 		  let searchRow = row;
 		  let searchSeat = col;
@@ -124,6 +156,7 @@ reservation(number, value){
 			
 			copySeats[row*10+col] = true;
 			copyBgColors[row*10+col] = '#3355FF';
+			this.reservation(row*10+col,true);
 		return {
 			seats: copySeats,
 			bgColors: copyBgColors,
@@ -132,8 +165,9 @@ reservation(number, value){
 		});
 
 	  }
-	  
+	  console.log("blavla2");
 	  }
+	}
   }
   
   handleOnMouseOverFreePlace(row, col)
@@ -177,6 +211,7 @@ reservation(number, value){
 			<Screen/>
 			<RowsContainer bgColors={colors} onStateChange={this.handleStateChange} onMouseOverFreePlace={this.handleOnMouseOverFreePlace} onMouseOutFreePlace={this.handleOnMouseOutFreePlace}/>
 			<Legend/>
+			 <button onClick={this.myFunction}>Click me</button> 
 			
 		</div>
     );
