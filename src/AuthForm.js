@@ -6,7 +6,7 @@ const auth = app.auth();
 const actionCodeSettings = {
       // URL you want to redirect back to. The domain (www.example.com) for this
       // URL must be whitelisted in the Firebase Console.
-      url: 'localhost:3000/userview',
+      url: 'https://raddunin.github.io/cinema-app/rezerwacja',
       // This must be true.
       handleCodeInApp: true,
       iOS: {

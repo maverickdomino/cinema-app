@@ -24,7 +24,6 @@ class CinemaRoom extends Component {
 	this.handleOnMouseOutFreePlace = this.handleOnMouseOutFreePlace.bind(this);
 	}
 	
-	
 	handleStateChange(row, col)
   {
 	if(this.state.seats[row*10+col])
