@@ -32,6 +32,7 @@ body {
 .navbar > ul > li > a{
   text-decoration: none;
 }
+
 .navbar > ul > li > a:visited{
   color:white;
 }
@@ -39,6 +40,7 @@ body {
 .navbar .navList .activeNav{
   color:#7bbded;
 }
+
 .navbar > ul > li > a:hover{
   color:black;
 }

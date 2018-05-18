@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
 import './AuthForm.css';
-import {app, facebookProv} from './firebase.js';
+import {app, user,facebookProv} from './firebase.js';
 
 const auth = app.auth();
+const actionCodeSettings = {
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
+      url: 'localhost:3000/userview',
+      // This must be true.
+      handleCodeInApp: true,
+      iOS: {
+        bundleId: 'com.example.ios'
+      },
+      android: {
+        packageName: 'com.example.android',
+        installApp: true,
+        minimumVersion: '12'
+      }
+    };
+
 class AuthForm extends Component {
   constructor(props){
     super(props);
@@ -11,7 +27,6 @@ class AuthForm extends Component {
       textPassword: "",
       infMessage: "",
       className: "errorBox",
-      authenticated: false
     }
 
     this.handleSignup = this.handleSignup.bind(this);
@@ -23,23 +38,40 @@ class AuthForm extends Component {
     handleSignup(e){
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
-     auth.createUserWithEmailAndPassword(textEmail,textPassword)
-      .then(() => this.setState({
-        infMessage:"registre succesfully",
-        className:"errorBox-active",
-        authenticated:true
-      }))
-      .catch((e) => this.setState({
-        className:"errorBox-active",
-        infMessage:e.message}))
-    }
 
+      if(textPassword !== '' && textPassword.length >= 6){
+      auth.sendSignInLinkToEmail(textEmail, actionCodeSettings)
+        .then(
+              () =>{ 
+                this.setState({
+                  infMessage:"auth email has sended succesfully, please check your email box",
+                  className:"errorBox-active",
+                })
+                window.localStorage.setItem('emailForSignIn', textEmail);
+                //auth.createUserWithEmailAndPassword(textEmail,textPassword)  
+              }
+                  // )
+            // .catch((e) => this.setState({
+            //   className:"errorBox-active",
+            //   infMessage:e.message}))
+            // }
+          )
+
+        .catch((e) => this.setState({
+                className:"errorBox-active",
+                infMessage:e.message
+              }));
+      }else {this.setState({
+                      infMessage:"Podaj conajmniej 6 literowe hasło",
+                      className:"errorBox-active",
+                    })
+        }
+    }
     handleLogin(e){
       const {textEmail,textPassword} = this.state;
       auth.signInWithEmailAndPassword(textEmail,textPassword)
         .then((result,err) =>{
           if(!err){
-          this.setState({authenticated:true})
           this.props.history.push('/userview');
           }
         })
@@ -68,7 +100,7 @@ class AuthForm extends Component {
       <div className="app">
         <header>
             <div className="wrapper-auth">
-              <h1>Login/register</h1>
+              <h1>Zaloguj/Zarejestruj</h1>
             </div>
         </header>
         <section className="container-auth">
@@ -77,27 +109,27 @@ class AuthForm extends Component {
             <input
               type="email"
               name="textEmail"
-              placeholder="enter your e-mail"
+              placeholder="wpisz swój adres e-mail"
               value={this.state.textEmail}
               onChange={this.handleChange}
             />
             <input
               type="password"
               name="textPassword"
-              placeholder="What is you password"
+              placeholder="wpisz swoje hasło"
               value={this.state.textPassword}
               onChange={this.handleChange}
             />
             <button type="button" onClick={this.handleSignup}>
-              Sign Up
+              Zarejestruj
             </button>
               <br/>
             <button type="button" onClick={this.handleLogin}>
-              Log in
+              Zaloguj
             </button>
             <br/>
             <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
-              log with facebook
+              Zaloguj przez facebook
             </button>
           </div>    
         </section>

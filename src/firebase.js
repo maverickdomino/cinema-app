@@ -10,5 +10,6 @@ const config = {
 };
 
 const app = firebase.initializeApp(config);
+const user = firebase.auth().currentUser;
 const facebookProv = new firebase.auth.FacebookAuthProvider();
-export {app,facebookProv};
+export {app,facebookProv,user};
