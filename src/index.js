@@ -13,21 +13,20 @@ class App extends Component {
 	constructor(props){
         super(props);
         this.state = {
-			index: 0,
-			ids: [],
+			id: 'id',
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(index,ids)
+	handleClick(id)
 	{
 		this.setState({
-			index: index,
-			ids: ids,
+			id: id,
 		});
 	}
 
     render() {
+
         return (
             <Router>
 				<div className="container">
@@ -44,7 +43,7 @@ class App extends Component {
 						<Route path="/loguj" exact component={AuthForm} />
 						<Route path="/" exact component={LiveMovies} />
 						<Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/> }/>
-						<Route path="/rezerwacja" render={(props) => <CinemaRoom {...props} id={this.state.ids[this.state.index]}/> }/>
+						<Route path={`/${this.state.id}`} render={(props) => <CinemaRoom {...props} id={this.state.id}/> }/>
 					</div>
 				</div>
             </Router>
