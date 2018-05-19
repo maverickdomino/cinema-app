@@ -5,7 +5,7 @@ class UpcomingMovies extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            apiData: []
+            apiData: [],
         }
     }
     componentDidMount() {
@@ -15,13 +15,26 @@ class UpcomingMovies extends Component {
     }
 
     render() {
-        const results = this.state.apiData.filter(filteredMovies => filteredMovies.popularity < 100);
+        const results = this.state.apiData.filter(filteredMovies => {
+            let now = new Date();
+            let cDate = new Date(filteredMovies.release_date.toString())
+            return now < cDate;
+        });
+
         return (
             <React.Fragment>
+            <div className="sections-title">NADCHODZĄCE PREMIERY</div>
              <ul>
              {results.map( movie =>
-                <li className="movies-live-list" key={movie.title}><img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="150" alt={movie.title}/><span className="movie-desc">Tytuł: {movie.title}<br />  Data premiery: {movie.release_date}<br />
-                test<br /> test2 <br />test3</span></li>
+                <li className="movies-live-list" key={movie.title}>
+                    <div className="upcoming-movies-container">
+                        <img src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="150" alt={movie.title}/>
+                        <span className="movie-desc">
+                            <span>{movie.title}</span><br /><br/>
+                            <span>Data premiery:<br /> {movie.release_date}</span>
+                        </span>
+                    </div>
+                </li>
             )}
              </ul>
              </React.Fragment>
