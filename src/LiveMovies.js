@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactModal from 'react-modal';
 //import { Route, Link } from "react-router-dom";
 import MovieDetail from './MovieDetail';
+import UpcomingMovies from './UpcomingMovies';
 
 class LiveMovies extends Component {
     constructor(props) {
@@ -46,8 +47,13 @@ class LiveMovies extends Component {
     }
 
     render() {
-        const results = this.state.apiData;
+        const results = this.state.apiData.filter(filteredMovies => {
+            let now = new Date();
+            let cDate = new Date(filteredMovies.release_date.toString())
+            return now > cDate;
+        });
         return (
+            <React.Fragment>
             <div className="section-live">
             <div className="sections-title">FILMY AKTUALNIE GRANE</div>
                 <div className="image-container">
@@ -62,11 +68,15 @@ class LiveMovies extends Component {
         </ReactModal>
                 {results.map( movie =>
                     <a key={movie.id} onClick={() => {this.fetchData(movie.id);this.handleOpenModal()}}>
-                   <img key={movie.title} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="170" alt={movie.title}/>
+                   <img key={movie.title} src={`https://image.tmdb.org/t/p/original${movie.poster_path}`} width="170" height="260" alt={movie.title}/>
                    </a>
                 )}
                 </div>
                 </div>
+                <div className="section-upcoming">
+                    <UpcomingMovies />
+                </div>
+                </React.Fragment>
             )
         }
     }

@@ -7,7 +7,7 @@ class Repertuar extends Component {
     constructor(props){
         super(props);
         this.state = {
-            repertoireDays: [], 	// array of days to display in Repertuar component (array of 7 elements)
+      repertoireDays: [], 	// array of days to display in Repertuar component (array of 7 elements)
 			repertoireDays2: [], 	// array of days to compare with this.state.moviesDays (array of 7 elements)
 			ids: [],						
 			titles: [], 			// titles of movies played in the cinema (unique titles)
