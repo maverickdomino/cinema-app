@@ -126,7 +126,6 @@ class MovieHours extends Component {
 	constructor(props){
 		super(props);
 		this.handleClick = this.handleClick.bind(this); // binding function
-		console.log(this.props.ids);
     }
 	
 	handleClick(index) // function to handle a click on repertoire hour of movie with index
