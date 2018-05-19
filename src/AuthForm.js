@@ -19,23 +19,17 @@ class AuthForm extends Component {
     this.handleLogWithFb = this.handleLogWithFb.bind(this);
     }
 
-   componentWillMount() {
-    auth.onAuthStateChanged(user => {
-      if(user){
-        auth.signOut()
-        .then(console.log("signout"))
-      }
-    })
-  }
-
     handleSignup(e){
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
      auth.createUserWithEmailAndPassword(textEmail,textPassword)
-      .then(() => this.setState({
-        infMessage:"registre succesfully",
-        className:"errorBox-active",
-      }))
+      .then(() => {
+        this.props.history.push('/repertuar'); 
+        this.setState({
+          infMessage:"registre succesfully",
+          className:"errorBox-active",
+        })
+      })
       .catch((e) => this.setState({
         className:"errorBox-active",
         infMessage:e.message}))
@@ -46,7 +40,7 @@ class AuthForm extends Component {
       auth.signInWithEmailAndPassword(textEmail,textPassword)
         .then((result,err) =>{
           if(!err){
-            this.props.history.push('/rezerwacja');
+            this.props.history.push('/repertuar');
           }
         })
         .catch((e) => this.setState({

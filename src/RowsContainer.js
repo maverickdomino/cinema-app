@@ -43,7 +43,7 @@ class RowsContainer extends Component {
 		
 		return(
 			<div id='rowsContainer'>
-				<div class='rowsInnerContainer'>
+				<div className='rowsInnerContainer'>
 			{rows}
 				</div>
 			</div>

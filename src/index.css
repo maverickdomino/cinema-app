@@ -54,6 +54,7 @@ li{
   width: 100%;
   flex-wrap: nowrap;
   color: black;
+  justify-content: center;
 }
 .section-upcoming{
   width: 50%;

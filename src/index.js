@@ -6,23 +6,36 @@ import './index.css';
 import './MediaQueries.css';
 import AuthForm from './AuthForm';
 import CinemaRoom from './CinemaRoom';
-import {app, facebookProv} from './firebase.js';
+import {app} from './firebase.js';
 import PrivateRoute from './PrivateRoute';
 import Information from './Information';
-
+import LogOut from './LogOut';
+import Repertuar from './Repertuar';
 const auth = app.auth();
 
 class App extends Component {
-      
-    state = { 
-        loading: true, 
-        authenticated: false, 
-        user: null,
-        linkLabel: "Zaloguj/Zarejestruj" 
-    };
-      
-      componentWillMount() {
+    constructor(props){
+        super(props);
+        this.state = { 
+            loading: true, 
+            authenticated: false, 
+            user: null,
+            index: 0,
+            ids: [],
+            linkLabel: "Zaloguj/Zarejestruj",
+            logOutPath: "/autoryzacja" 
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }  
 
+    handleClick(index,ids)
+    {
+        this.setState({
+            index: index,
+            ids: ids,
+        });
+    }
+      componentWillMount() {
             auth.onAuthStateChanged(user => {
             if (user) {
               this.setState({
@@ -30,19 +43,23 @@ class App extends Component {
                 currentUser: user,
                 loading: false,
                 linkLabel: "wyloguj",
+                logOutPath: "/logout",
               });
             } else {
               this.setState({
                 authenticated: false,
                 currentUser: null,
-                loading: false
+                loading: false,
+                linkLabel: "Zaloguj/Zarejestruj",
+                logOutPath: "/autoryzacja"
               });
             }
           });
         }
 
     render() {
-        const { authenticated, loading } = this.state;
+        const { authenticated, loading, linkLabel,logOutPath } = this.state;
+        console.log(authenticated)
         if (loading) {
             return <p>Loading..</p>;
         }
@@ -54,8 +71,7 @@ class App extends Component {
                     <ul className="navList">
                         <li><NavLink exact to="/" activeClassName="activeNav">Strona główna</NavLink></li>
                         <li><NavLink to="/repertuar" activeClassName="activeNav">Repertuar</NavLink></li>
-                        <li><NavLink to="/rezerwacja" activeClassName="activeNav">Rezerwuj bilet</NavLink></li>
-                        <li><NavLink to="/autoryzacja" activeClassName="activeNav">{this.state.linkLabel}</NavLink></li>
+                        <li><NavLink to={this.state.logOutPath} activeClassName="activeNav">{this.state.linkLabel}</NavLink></li>
                     </ul>
                 </div>
                 <div className="wrapper">
@@ -63,8 +79,10 @@ class App extends Component {
                     <Route exact path="/" component={LiveMovies} />
                     <Route path="/autoryzacja" component={AuthForm} />
                     <Route path="/informacja" component={Information} />
+                    <Route path="/logout" component={LogOut} />
+                    <Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/>} />
+                <PrivateRoute path="/rezerwacja" authenticated={authenticated} component={(props) => <CinemaRoom {...props} id={this.state.ids[this.state.index]}/>} />
                 </Switch>
-                <PrivateRoute exact path="/rezerwacja" component={CinemaRoom} authenticated={authenticated}/>
                 </div>
             </div>
             </Router>

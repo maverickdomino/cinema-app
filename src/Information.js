@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import './AuthForm.css'
-import { Route, Redirect } from "react-router-dom";
 
 class Information extends Component {
   constructor(props){
