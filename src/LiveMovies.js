@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+//import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-import { Route, Link } from "react-router-dom";
+//import { Route, Link } from "react-router-dom";
 import MovieDetail from './MovieDetail';
 import UpcomingMovies from './UpcomingMovies';
 

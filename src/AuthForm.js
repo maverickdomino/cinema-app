@@ -23,6 +23,7 @@ class AuthForm extends Component {
     handleSignup(e){
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
+
      auth.createUserWithEmailAndPassword(textEmail,textPassword)
       .then(() => this.setState({
         infMessage:"registre succesfully",

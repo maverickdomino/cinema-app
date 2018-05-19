@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from "react-router-dom";
+import { /*Route,*/ Link } from "react-router-dom";
 import './MovieDetail.css';
 
 class MovieDetail extends Component {
@@ -62,9 +62,7 @@ class MovieDetail extends Component {
                                 </React.Fragment>
                             )
                         }
-
-                        // {this.props.genres[0].name}
                     }
 
-                    //
+
                     export default MovieDetail;

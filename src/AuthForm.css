@@ -5,6 +5,7 @@
 .app{
   width: 100%;
 }
+
 header {
   color: #fff;
   background-color: #103D5D;
@@ -19,8 +20,9 @@ header h1 {
   display: inline-block;
   margin: 0;
   vertical-align: middle;
-
+  
 }
+
 
 .container-auth {
   display: flex;
@@ -32,6 +34,7 @@ header h1 {
   flex-direction: row;
   width: 100vw;
 }
+
 
 .wrapper-auth {
   max-width: 1100px;

@@ -4,40 +4,52 @@ import ReactDOM from 'react-dom';
 import LiveMovies from './LiveMovies';
 import './index.css';
 import './MediaQueries.css';
-import UpcomingMovies from './UpcomingMovies';
+//import UpcomingMovies from './UpcomingMovies';
 import AuthForm from './AuthForm';
 import Repertuar from './Repertuar';
+import CinemaRoom from './CinemaRoom';
 
 class App extends Component {
+	constructor(props){
+        super(props);
+        this.state = {
+			id: 'id',
+		}
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick(id)
+	{
+		this.setState({
+			id: id,
+		});
+	}
 
     render() {
+
         return (
             <Router>
-            <div className="container">
-                <div className="navbar">
-                    <ul>
-                        <li><Link to="/">Strona główna</Link></li>
-                        <li><Link to="/repertuar">Repertuar</Link></li>
-                        <li>Rezerwuj bilet</li>
-                        <li><Link to="/loguj">Loguj</Link></li>
-                        <li>Rejestruj</li>
-                    </ul>
-                </div>
-                <div className="wrapper">
-                    <Route path="/loguj" exact component={AuthForm} />
-                    <Route path="/" exact component={LiveMovies} />
-                    <Route path="/repertuar" exact component={Repertuar} />
-
-                    </div>
-
-                </div>
+				<div className="container">
+					<div className="navbar">
+						<ul>
+							<li><Link to="/">Strona główna</Link></li>
+							<li><Link to="/repertuar">Repertuar</Link></li>
+							<li>Rezerwacja</li>
+							<li><Link to="/loguj">Loguj</Link></li>
+							<li>Rejestruj</li>
+						</ul>
+					</div>
+					<div className="wrapper">
+						<Route path="/loguj" exact component={AuthForm} />
+						<Route path="/" exact component={LiveMovies} />
+						<Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/> }/>
+						<Route path={`/${this.state.id}`} render={(props) => <CinemaRoom {...props} id={this.state.id}/> }/>
+					</div>
+				</div>
             </Router>
         )
     }
-
 }
 
-
-
-
 ReactDOM.render(<App />, document.getElementById('root'));
+
