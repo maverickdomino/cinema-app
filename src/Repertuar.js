@@ -11,7 +11,7 @@ class Repertuar extends Component {
         super(props);
         this.state = {
             array: [],
-			movieData: null,
+			movieData: null
 		 }
     }
 
@@ -20,6 +20,7 @@ class Repertuar extends Component {
         let arr = [];
 		// const context = this;
         let options = { weekday: 'short', month: '2-digit', day: 'numeric' };
+
 		for (let i=0; i<7; i++) {
             let date = new Date();
             date.setDate(date.getDate() + i)
@@ -35,40 +36,9 @@ class Repertuar extends Component {
                     console.log(arr)
                 });
                 this.setState({ movieData: arr })
-
-
-/*
-		ref.on('value', function(snapshot){
-			arr = [];
-			snapshot.forEach(function(childSnapshot) {
-				arr.push(childSnapshot.val());
-			})
-			printMoviesTitles(arr);
-		})
-
-		function printMoviesTitles(seances){
-			let moviesTitles = [];
-			seances.forEach(seance => {
-				if(!ifStringExists(seance.title, moviesTitles)){
-					moviesTitles.push(seance.title);
-				}
-			})
-			context.setState({ titles: moviesTitles});
-		}
-
-		function ifStringExists(string, array){
-			return (array.indexOf(string) > -1);
-        } */
-    }
-    /* handleTitles(arr){
-        return arr.filter((value) => {
-            value.
-        })
-         { this.state.movieData.map(seans => <tr key={seans.date}><th>{seans.title}</th></tr>) }
-    } */
+            }
 
     render() {
-        console.log(this.state.movieData);
         return (
             <React.Fragment>
                 <table>
@@ -77,7 +47,6 @@ class Repertuar extends Component {
 							<th>Title</th>
                             { this.state.array.map(day => <th key={day}>{day}</th>) }
                             </tr>
-
                    </tbody>
                 </table>
             </React.Fragment>
