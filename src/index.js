@@ -14,14 +14,22 @@ class App extends Component {
         super(props);
         this.state = {
 			id: 'id',
+			title: 'title',
+			day: 'day',
+			hour: 'hour',
+			room: 0,
 		}
 		this.handleClick = this.handleClick.bind(this);
 	}
 
-	handleClick(id)
+	handleClick(id,title,day,hour,room)
 	{
 		this.setState({
 			id: id,
+			title: title,
+			day: day,
+			hour: hour,
+			room: room,
 		});
 	}
 
@@ -43,7 +51,9 @@ class App extends Component {
 						<Route path="/loguj" exact component={AuthForm} />
 						<Route path="/" exact component={LiveMovies} />
 						<Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/> }/>
-						<Route path={`/${this.state.id}`} render={(props) => <CinemaRoom {...props} id={this.state.id}/> }/>
+						<Route path={`/${this.state.id}`} render={(props) => <CinemaRoom {...props} 
+						id={this.state.id} title={this.state.title} day={this.state.day}
+						hour={this.state.hour} room={this.state.room}/> }/>
 					</div>
 				</div>
             </Router>

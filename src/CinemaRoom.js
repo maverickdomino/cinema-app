@@ -35,11 +35,59 @@ class CinemaRoom extends Component {
 		this.handleStateChange = this.handleStateChange.bind(this);						// binding
 		this.handleOnMouseOverFreePlace = this.handleOnMouseOverFreePlace.bind(this);
 		this.handleOnMouseOutFreePlace = this.handleOnMouseOutFreePlace.bind(this);
+		this.myFunction = this.myFunction.bind(this);
+		this.getChosenSeatsArray = this.getChosenSeatsArray.bind(this);
+	}
+	
+	componentWillUnmount()
+	{
+		if((this.state.chosenSeats.length) > 0)
+		{
+			let copySeats = this.state.seats;
+			let indexes = this.getChosenSeatsArray();
+			for(let i = 0; i < indexes.length; i++)
+			{
+				this.reservation(indexes[i],true);
+			}
+			
+		}
+	}
+	
+	getChosenSeatsArray() // function to return array of indexes of chosen seats
+	{
+		let indexes = [];
+		let copyChosenSeats = this.state.chosenSeats;
+		for(let i = 0; i < copyChosenSeats.length; i++)
+			{
+				indexes.push(copyChosenSeats[i].row * 10 + copyChosenSeats[i].seat);
+			}
+		return indexes;
 	}
 	
 	myFunction()
 	{
-		
+		console.log(this.state.chosenSeats.length);
+		if((this.state.chosenSeats.length) > 0)
+		{
+			let indexes = this.getChosenSeatsArray();
+			let copyBgColors = this.state.bgColors;
+			
+			for(let i = 0; i < indexes.length; i++)
+			{
+				copyBgColors[indexes[i]] = 'red';
+			}
+			
+			this.setState({
+				chosenSeats: [],
+				bgColors: copyBgColors,
+			});
+			alert("Reservation completed!");
+			this.forceUpdate();
+		}
+		else
+		{
+			alert("Musisz wybrać miejsca, żeby zarezerwować!");
+		}
 	}
 	
 	reservation(number, value){ 				// function to reserve/unreserve seat in cinema
@@ -75,6 +123,7 @@ class CinemaRoom extends Component {
 						};
 					});
 				}
+				//console.log(this.state.chosenSeats.length);
 			}
 			else							// if seat is chosen
 			{		
@@ -108,6 +157,7 @@ class CinemaRoom extends Component {
 					});
 
 				}
+				
 			}
 	}
 	  
@@ -140,10 +190,13 @@ class CinemaRoom extends Component {
 	render() {
 		return (
 			<div>
+				<div>{this.props.title}</div>
+				<div>{this.props.day}, {this.props.hour}</div>
+				<div>Room {this.props.room}</div>
 				<Screen/>
 				<RowsContainer bgColors={this.state.bgColors} onStateChange={this.handleStateChange} onMouseOverFreePlace={this.handleOnMouseOverFreePlace} onMouseOutFreePlace={this.handleOnMouseOutFreePlace}/>
 				<Legend/>
-				<button onClick={this.myFunction}>Useless button</button> 
+				<button onClick={this.myFunction}>Rezerwuj</button> 
 			</div>
 		);
 	}

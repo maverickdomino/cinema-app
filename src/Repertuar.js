@@ -13,8 +13,8 @@ class Repertuar extends Component {
 			titles: [], 			// titles of movies played in the cinema (unique titles)
 			hours: [], 				// array of times(hours) of played movies (size of array is equal to size of elements in database)
 			moviesDays: [], 		// array of days of played movies (size of array is equal to size of elements in database)
-			allTitles: [], 			// array of movie's titles which are played in the cinema (size of array is equal to size of elements in database, elements do not have to be unique)
-			stan: true,
+			allTitles: [],			// array of movie's titles which are played in the cinema (size of array is equal to size of elements in database, elements do not have to be unique)
+			rooms: [],	
 		}
 		this.handleClick = this.handleClick.bind(this); //binding function
     }
@@ -59,7 +59,8 @@ class Repertuar extends Component {
 			let moviesTitles = []; 			// temporary array to hold this.state.titles
 			let dates = []; 				// temporary array to hold this.state.moviesDays
 			let hours = []; 				// temporary array to hold this.state.hours
-			let allTitles = []; 			// temporary array to hold this.state.allTitles
+			let allTitles = [];
+			let rooms = []; 			// temporary array to hold this.state.allTitles
 			seances.forEach(seance => { 	// for each element in seances[]
 				if(!ifStringExists(seance.title, moviesTitles)){ 	// if seance.title doesn't exist in moviesTitles[]
 					moviesTitles.push(seance.title); 					// push seance.title into moviesTitles[] 
@@ -67,6 +68,7 @@ class Repertuar extends Component {
 				dates.push(seance.date); 		// push seance.date into dates[]
 				hours.push(seance.time); 		// push seance.time into hours[]
 				allTitles.push(seance.title); 	// push seance.title into allTitles[]
+				rooms.push(seance.hall);
 			})
 
 			context.setState({ titles: moviesTitles,  // setting state
@@ -74,6 +76,7 @@ class Repertuar extends Component {
 								hours: hours,
 								allTitles: allTitles,
 								ids: ids,
+								rooms: rooms,
 								});
 		}	
 		function ifStringExists(string, array){ // function to check if string exists in an array
@@ -90,7 +93,8 @@ class Repertuar extends Component {
 				ids.push(childSnapshot.key); 					// push movie's id to ids[]
 			})
 		})*/
-		this.props.onClick(this.state.ids[index]); 						// send index and ids in props to index.js
+		this.props.onClick(this.state.ids[index],this.state.allTitles[index],
+			this.state.moviesDays[index],this.state.hours[index],this.state.rooms[index]); 						// send movie's id in props to index.js
 	}
     render() { // render method
 					// for each element in this.state.repertoire days print the element
