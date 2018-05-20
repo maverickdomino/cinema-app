@@ -1,63 +1,92 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import './AuthForm.css';
-import firebase from './firebase.js';
+import {app, facebookProv} from './firebase.js';
 
-const auth = firebase.auth();
+const auth = app.auth();
 class AuthForm extends Component {
   constructor(props){
     super(props);
     this.state = {
       textEmail: "",
-      textPassword: ""
-    };
+      textPassword: "",
+      infMessage: "",
+      className: "errorBox",
+      authenticated: false
+    }
+
     this.handleSignup = this.handleSignup.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleLogWithFb = this.handleLogWithFb.bind(this);
     }
 
     handleSignup(e){
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
-      const promise = auth.createUserWithEmailAndPassword(textEmail,textPassword);
-      console.log(`Email: ${textEmail} passw: ${textPassword}`)
-      promise.catch((e) => alert(e.message));
+     auth.createUserWithEmailAndPassword(textEmail,textPassword)
+      .then(() => this.setState({
+        infMessage:"registre succesfully",
+        className:"errorBox-active",
+        authenticated:true
+      }))
+      .catch((e) => this.setState({
+        className:"errorBox-active",
+        infMessage:e.message}))
     }
+
     handleLogin(e){
       const {textEmail,textPassword} = this.state;
-      const promise = auth.signInWithEmailAndPassword(textEmail,textPassword);
-      promise.catch((e) => alert(e.message));
-    }
+      auth.signInWithEmailAndPassword(textEmail,textPassword)
+        .then((result,err) =>{
+          if(!err){
+          this.setState({authenticated:true})
+          this.props.history.push('/userview');
+          }
+        })
+        .catch((e) => this.setState({
+          className:"errorBox-active",
+          infMessage:e.message
+        }))
+      }
+
     //checking if the user was already signed in
-    /*firebase.auth().onAuthStateChanged((firebaseUser) =>{
-      firebaseUser ? console.log(firebaseUser): console.log('not looged');
+    /*auth.onAuthStateChanged((firebaseUser) =>{
+      firebaseUser ? console.log(firebaseUser): console.log("not looged");
     })*/
+
     handleChange(e){
       this.setState({[e.target.name]: e.target.value});
-    } 
+    }
+
+    handleLogWithFb(e){
+      const promise = app.auth().signInWithPopup(facebookProv)
+        promise.catch((e) => this.setState({label:e.message}));
+    }
+
   render() {
     return (
-      <div className='app'>
+      <div className="app">
         <header>
-            <div className='wrapper'>
+            <div className="wrapper-auth">
               <h1>Login/register</h1>
             </div>
         </header>
-        <section className='container'>
+        <section className="container-auth">
         <div className="logForm">
-            <input 
-              type="email" 
-              name="textEmail" 
-              placeholder="What's your name?"
+        <label className={this.state.className}>{this.state.infMessage}</label>
+            <input
+              type="email"
+              name="textEmail"
+              placeholder="enter your e-mail"
               value={this.state.textEmail}
-              onChange={this.handleChange} 
+              onChange={this.handleChange}
             />
-            <input 
-              type="password" 
-              name="textPassword" 
+            <input
+              type="password"
+              name="textPassword"
               placeholder="What is you password"
               value={this.state.textPassword}
-              onChange={this.handleChange}  
+              onChange={this.handleChange}
             />
             <button type="button" onClick={this.handleSignup}>
               Sign Up
@@ -65,6 +94,10 @@ class AuthForm extends Component {
               <br/>
             <button type="button" onClick={this.handleLogin}>
               Log in
+            </button>
+            <br/>
+            <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
+              log with facebook
             </button>
           </div>    
         </section>

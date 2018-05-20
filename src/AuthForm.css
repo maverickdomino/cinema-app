@@ -1,100 +1,17 @@
-/* body {
+/*body {
   font-family: 'Open Sans', sans-serif;
   background-color: #fff;
 }
-
-header {
-  color: #fff;
-  background-color: #103D5D;
-  padding: 33px 0 25px 15px;
-}
-
-header h1 {
-  font-size: 25px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  display: inline-block;
-  margin: 0;
-  vertical-align: middle;
-  
-}
-
-.container {
-  display: flex;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-top: 30px;
-  justify-content: center;
-  align-items:center;
-  flex-direction: row;
-  width: 100vw;
-}
-
-.wrapper {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.logForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  border-radius: 2px;
-  border-top: 3px solid #103D5D;
-  background-color: rgb(237, 237, 237);
-  padding: 60px 18px;
-  box-shadow: 0 3px 4px 0 rgba(0,0,0,.14), 0 3px 3px -2px rgba(0,0,0,.12), 0 1px 8px 0 rgba(0,0,0,.2);
-  width: 25%;
-}
-
-input {
-  display: flex;
-  font-size: 22px;
-  color: #000;
-  padding: 18px 22px;
-  font-size: 16px;
-  margin-bottom: 17px;
-  border: 0;  
-}
-
-h2 {
-  padding: 0;
-  margin: 0;
-  font-weight: 400;
-}
-
-form button {
-  width: 100%;
-  margin-top: 10px;
-}
-
-button {
-  border-radius: 2px;
-  min-width: 88px;
-  background-color: #FA6900;
-  cursor: pointer;
-  border: 0;
-  min-width: 120px;
-  color: #fff;
-  font-size: 14px;
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
-  padding: 10px 6px;
-}
-||||||| merged common ancestors
-=======
-/* body {
-  font-family: 'Open Sans', sans-serif;
-  background-color: #fff;
-} */
+*/
 .app{
   width: 100%;
 }
 
 header {
-  color: #fff;
-  background-color: #103D5D;
+  color: black;
   padding: 33px 0 25px 15px;
   width: 100%;
+  text-align: center;
 }
 
 header h1 {
@@ -104,9 +21,7 @@ header h1 {
   display: inline-block;
   margin: 0;
   vertical-align: middle;
-  
 }
-
 
 .container-auth {
   display: flex;
@@ -118,7 +33,6 @@ header h1 {
   flex-direction: row;
   width: 100vw;
 }
-
 
 .wrapper-auth {
   max-width: 1100px;
@@ -161,7 +75,7 @@ form button {
 button {
   border-radius: 2px;
   min-width: 88px;
-  background-color: #FA6900;
+  background-color: #1a70ad /*#FA6900*/;
   cursor: pointer;
   border: 0;
   min-width: 120px;
@@ -170,11 +84,6 @@ button {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
   padding: 10px 6px;
 }
-
-/* img {
-  display: flex;
-  width:3vw;
-} */
 
 .errorBox{
   display: none;
@@ -185,4 +94,3 @@ button {
   padding: 20px;
   color:red;
 }
->>>>>>> dominik
