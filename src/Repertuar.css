@@ -1,6 +1,25 @@
 tbody > tr > th, tbody > tr > td  {
     padding: 20px;
 }
-table {
-    margin: 0 auto;
+.table-container{
+    width: 100%;
 }
+
+table{
+    border: 2px solid black;
+    border-spacing: 0;
+    margin: 5% auto;
+}
+td,th{
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    text-align: center;
+}
+th{
+    font-family: 'Montserrat', sans-serif;
+}
+tr:first-of-type{
+    color: #f1c40f;
+}
+tr:nth-child(even){background-color: #f2f2f2;}

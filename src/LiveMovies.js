@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 //import { Route, Link } from "react-router-dom";
 import MovieDetail from './MovieDetail';
 import UpcomingMovies from './UpcomingMovies';
+import {app} from './firebase.js';
 
 class LiveMovies extends Component {
     constructor(props) {
@@ -34,7 +35,57 @@ class LiveMovies extends Component {
    componentDidMount() {
            fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=4ed1fcc5ffc6bf4d248c44f2928822e8&language=pl-PL')
         .then(response => response.json())
-        .then(data =>{ if (this._isMounted === true ) this.setState({ apiData: data.results }) });
+        .then(data =>{
+            if (this._isMounted === true ) this.setState({ apiData: data.results });
+            this.generateMovies(data.results);
+        });
+    }
+    generateMovies(arr){
+        const hours = ["10:30", "14:30", "18:45", "21:50"];
+        const hallsNumber = 8;
+        const titlesArray = arr.map(movie => movie.title);
+        app.database().ref().child("seances").limitToLast(1)
+            .once('value', snapshot => {
+                for (let date in snapshot.val()){
+                this.generateSeances(titlesArray, snapshot.val()[date].date, hallsNumber, hours, titlesArray)
+                }
+            })
+    }
+    generateSeances(arr, date, halls, hours, titles){
+        let day = date.substr(0,2);
+        let month = date.substr(3,5);
+        let currentDate = new Date();
+        let daysArray = [];
+        for (let i=0; i<7; i++){
+            if(currentDate.getDate() > parseInt(day,10) && currentDate.getMonth()+1 >= parseInt(month,10)) {
+                    daysArray.push(`${('0'+currentDate.getDate().toString()).slice(-2)}.${('0'+(currentDate.getMonth()+1).toString()).slice(-2)}`)
+            }
+            currentDate.setDate(currentDate.getDate()+1);
+        }
+        for (let y=0; y<daysArray.length; y++){
+            for(let i=1; i<=halls; i++){
+                for(let z=0; z<hours.length; z++){
+                    let titleRandomNumber = Math.floor(Math.random()*(titles.length+1));
+                    if (titleRandomNumber < titles.length){
+                        app.database().ref().child("seances").push().set({
+                            date: daysArray[y],
+                            hall: i,
+                            sits: this.generateSeats(),
+                            time: hours[z],
+                            title: titles[titleRandomNumber]
+                        })
+                    }
+                }
+            }
+        }
+    }
+    generateSeats(){
+        let arr = [];
+        for (let i=0; i<100; i++){
+            let me = Math.random() >= 0.5
+            arr.push(me)
+        }
+        return arr;
     }
 
     fetchData(value){

@@ -15,12 +15,6 @@ class MovieDetail extends Component {
         this.state.toggleViewMore ? this.setState({toggleViewMore: false}) : this.setState({toggleViewMore: true})
     }
 
-    formatNumber(number) {
-        let newNumber = number.toString();
-        let numLength = Math.floor(newNumber.length/3);
-        let luls = newNumber.slice(0, -3);
-    }
-
     render() {
         const text = this.state.toggleViewMore ? (
             <span>
@@ -54,7 +48,7 @@ class MovieDetail extends Component {
                                     <a onClick={this.toggleViewMore}>{text}</a><br /><br /></span>
                                 }
                                 {this.props.overview.length < 200 && <span>{this.props.overview}<br /><br /></span>}
-                                <span className="titles">Budżet:</span>{this.props.budget == 0 ? <span>Brak informacji</span> : <span>{this.props.budget} $</span>} <br /><br />
+                                <span className="titles">Budżet:</span>{this.props.budget === 0 ? <span>Brak informacji</span> : <span>{this.props.budget} $</span>} <br /><br />
                                 <span className="titles">Czas trwania:</span> {this.props.runtime} min
                                 </div>
                                 </div>
