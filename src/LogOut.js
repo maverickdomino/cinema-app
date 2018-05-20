@@ -8,8 +8,8 @@ class LogOut extends Component {
 
 	componentWillMount() {
 		let {authenticated} = this.props;
-      	console.log("user from logout: "+auth.user);
       	console.log("auth from logout: "+authenticated);
+     
       if(authenticated){
         auth.signOut()
         .then(console.log("signout"))
