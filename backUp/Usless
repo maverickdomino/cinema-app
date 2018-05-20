@@ -1,0 +1,18 @@
+<form className='logForm' onSubmit={(e) => {
+                e.preventDefault();
+                const data = [...this.state.data,this.state.textUsername];
+                console.log(data);
+                this.setState({data, textUsername: ''});
+              }}>
+               <button type="submit">
+                  save
+                </button>
+https://adroit-lantern-169718.firebaseapp.com/__/auth/action
+
+                praca 13h
+                9.05. 13:00 - 18:00 (-2h)
+                10.05 11:30 - 14:00
+                12.05 13:00 - 14:46
+                12.05 16:30 - 18:00
+                14.05 19:00 - 00:00
+                18.05 12:00 - 00:00
