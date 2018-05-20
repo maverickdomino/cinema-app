@@ -30,7 +30,7 @@ header h1 {
   padding-top: 30px;
   justify-content: center;
   align-items:center;
-  flex-direction: row;
+  flex-direction: column;
   width: 100vw;
 }
 

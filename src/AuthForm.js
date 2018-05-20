@@ -11,7 +11,6 @@ class AuthForm extends Component {
       textPassword: "",
       infMessage: "",
       className: "errorBox",
-      authenticated: false
     }
 
     this.handleSignup = this.handleSignup.bind(this);
@@ -24,11 +23,13 @@ class AuthForm extends Component {
       //TODO: check 4 real email
       const {textEmail,textPassword} = this.state;
      auth.createUserWithEmailAndPassword(textEmail,textPassword)
-      .then(() => this.setState({
-        infMessage:"registre succesfully",
-        className:"errorBox-active",
-        authenticated:true
-      }))
+      .then(() => {
+        this.props.history.push('/repertuar'); 
+        this.setState({
+          infMessage:"registre succesfully",
+          className:"errorBox-active",
+        })
+      })
       .catch((e) => this.setState({
         className:"errorBox-active",
         infMessage:e.message}))
@@ -39,8 +40,7 @@ class AuthForm extends Component {
       auth.signInWithEmailAndPassword(textEmail,textPassword)
         .then((result,err) =>{
           if(!err){
-          this.setState({authenticated:true})
-          this.props.history.push('/userview');
+            this.props.history.push('/repertuar');
           }
         })
         .catch((e) => this.setState({
@@ -48,11 +48,6 @@ class AuthForm extends Component {
           infMessage:e.message
         }))
       }
-
-    //checking if the user was already signed in
-    /*auth.onAuthStateChanged((firebaseUser) =>{
-      firebaseUser ? console.log(firebaseUser): console.log("not looged");
-    })*/
 
     handleChange(e){
       this.setState({[e.target.name]: e.target.value});
@@ -68,7 +63,7 @@ class AuthForm extends Component {
       <div className="app">
         <header>
             <div className="wrapper-auth">
-              <h1>Login/register</h1>
+              <h1>Zaloguj/Zarejestruj</h1>
             </div>
         </header>
         <section className="container-auth">
@@ -77,27 +72,27 @@ class AuthForm extends Component {
             <input
               type="email"
               name="textEmail"
-              placeholder="enter your e-mail"
+              placeholder="wpisz swój adres e-mail"
               value={this.state.textEmail}
               onChange={this.handleChange}
             />
             <input
               type="password"
               name="textPassword"
-              placeholder="What is you password"
+              placeholder="wpisz swoje hasło"
               value={this.state.textPassword}
               onChange={this.handleChange}
             />
-            <button type="button" onClick={this.handleSignup}>
-              Sign Up
-            </button>
-              <br/>
             <button type="button" onClick={this.handleLogin}>
-              Log in
+              Zaloguj
             </button>
             <br/>
             <button className="fbButton" type="button" onClick={this.handleLogWithFb}>
-              log with facebook
+              zaloguj się przez facebooka
+            </button>
+              <br/>
+            <button type="button" onClick={this.handleSignup}>
+              Nie masz jeszcze konta?
             </button>
           </div>    
         </section>

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Poppins');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans');
 body {
   margin: 0;
   padding: 0;
@@ -14,10 +14,12 @@ body {
   flex-wrap: wrap;
 
 }
+
+/*=========NAV==============================*/
 .navbar{
   display: flex;
   width: 100%;
-  background-color: #48466D;
+  background-color: #1a70ad;
   color: white;
   justify-content: flex-end;
   font-family: 'Montserrat', sans-serif;
@@ -26,9 +28,20 @@ body {
   letter-spacing: 2px;
   padding-right: 5%;
 }
-.navbar a{
-text-decoration: none;
-color: #ffff;
+
+.navbar > ul > li > a {
+  text-decoration: none;
+  color: white;
+}
+.navbar > ul > li > a:visited{
+  color:white;
+}
+
+.navbar .navList .activeNav{
+  color:#7bbded;
+}
+.navbar > ul > li > a:hover{
+  color:black;
 }
 
 li{
@@ -39,20 +52,14 @@ li{
 .wrapper{
   display: flex;
   width: 100%;
-  flex-wrap: wrap;
-  color: black;
-}
-.wrapper-details{
-  display: flex;
-  width: 100%;
   flex-wrap: nowrap;
   color: black;
+  justify-content: center;
 }
 .section-upcoming{
-  width: 100%;
+  width: 50%;
   height: auto;
   padding-top: 5%;
-  flex-wrap: wrap;
 }
 .section-live{
   width: 100%;
@@ -92,7 +99,6 @@ li{
   }
 .image-container > a {
   outline: none;
-  cursor: pointer;
 }
 .image-container > a > img {
   padding: 15px;
@@ -106,14 +112,18 @@ li{
 .movies-live-list{
   /* width: 80%; */
   display: inline-block;
+  /* vertical-align: middle; */
+  /* border-bottom: 2px solid #227093; */
   margin: 10px;
 }
 
 .movie-desc {
-  padding: 10% 10px;
-  margin: 0 auto;
-  color: white;
-  text-align: center;
+  float: right;
+  width: 250px;
+  margin: 40px 20% 0 0;
+  padding-left: 5%;
+  text-align: left;
+  border-left: 1px solid #227093;
 }
 li > img {
   /* float: left; */
@@ -143,13 +153,10 @@ li > img {
   background: rgba(255,255,255, .75);
   min-width: 350px;
 }
-.genre-container{
-  flex: 1;
-  background: transparent;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  margin: 10px;
-  display: inline-block;
+.movie-genres{
+  position: relative;
+  margin: 0 auto;
+  height: auto;
 }
 
 .movie-genre-item{
@@ -177,19 +184,4 @@ li > img {
   letter-spacing: 2px;
   margin-right: 10px;
   margin-left: 5px;
-}
-.upcoming-movies-container{
-  display: flex;
-  flex-wrap: nowrap;
-  width: 350px;
-  height: 230px;
-  border: 2px solid black;
-  background-color: #282828;
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
-
-}
-.upcoming-movies-container > img {
-  float: left;
-  border: 3px solid black;
 }
