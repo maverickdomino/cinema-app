@@ -6,15 +6,15 @@ const auth = app.auth();
 
 class LogOut extends Component {
 
-
-	componentDidMount() {
-	    auth.onAuthStateChanged(user => {
-	      if(user){
-	        auth.signOut()
-	        .then(console.log("signout"))
-	      }
-	    })
-	  }
+	componentWillMount() {
+		let {authenticated} = this.props;
+      	console.log("user from logout: "+auth.user);
+      	console.log("auth from logout: "+authenticated);
+      if(authenticated){
+        auth.signOut()
+        .then(console.log("signout"))
+      }
+  }
 
 	render() {
 		return(

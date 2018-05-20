@@ -59,7 +59,6 @@ class App extends Component {
 
     render() {
         const { authenticated, loading, linkLabel,logOutPath } = this.state;
-        console.log(authenticated)
         if (loading) {
             return <p>Loading..</p>;
         }
@@ -74,12 +73,12 @@ class App extends Component {
                         <li><NavLink to={this.state.logOutPath} activeClassName="activeNav">{this.state.linkLabel}</NavLink></li>
                     </ul>
                 </div>
-                <div className="wrapper">
-                <Switch>
+                <div className="wrapper"
+>                <Switch>
                     <Route exact path="/" component={LiveMovies} />
                     <Route path="/autoryzacja" component={AuthForm} />
                     <Route path="/informacja" component={Information} />
-                    <Route path="/logout" component={LogOut} />
+                    <Route path="/logout" render={(props) => <LogOut authenticated={this.state.authenticated} {...props} />} />
                     <Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/>} />
                 <PrivateRoute path="/rezerwacja" authenticated={authenticated} component={(props) => <CinemaRoom {...props} id={this.state.ids[this.state.index]}/>} />
                 </Switch>
