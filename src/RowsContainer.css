@@ -1,0 +1,22 @@
+/*.row
+{
+	clear: both;
+}*/
+
+/*.rowsContainer
+{
+	margin: auto;
+}*/
+
+/*.rowsInnerContainer
+{
+	display: table;
+	margin: auto;
+}*/
+
+/*@media only screen and (min-width: 600px) {
+	#rowsContainer
+	{
+		width: 28.2em;
+	}
+}*/
