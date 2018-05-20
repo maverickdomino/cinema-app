@@ -17,7 +17,6 @@ class AuthForm extends Component {
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLogWithFb = this.handleLogWithFb.bind(this);
-    this.handleEnter = this.handleEnter.bind(this);
     }
 
     handleSignup(e){
@@ -57,8 +56,6 @@ class AuthForm extends Component {
     handleLogWithFb(e){
       const promise = app.auth().signInWithPopup(facebookProv)
         promise.catch((e) => this.setState({label:e.message}));
-    }
-
     }
 
   render() {
