@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './dominikStyles.css';
+import './RowsContainer.css';
 import Row from './Row.js';
 
 class RowsContainer extends Component {
@@ -39,17 +39,18 @@ class RowsContainer extends Component {
 		
 		
 		
-		let rows = rowsNumbers.map((number) => <div key={number} class="row"><Row bgColors={this.props.bgColors.slice(number*10,(number*10)+10)} onStateChange={this.handleStateChange} onMouseOverFreePlace={this.handleOnMouseOverFreePlace} onMouseOutFreePlace={this.handleOnMouseOutFreePlace} number={number}/></div>);
+		let rows = rowsNumbers.map((number) => <div key={number} className="row"><Row bgColors={this.props.bgColors.slice(number*10,(number*10)+10)} onStateChange={this.handleStateChange} onMouseOverFreePlace={this.handleOnMouseOverFreePlace} onMouseOutFreePlace={this.handleOnMouseOutFreePlace} number={number}/></div>);
 		
 		return(
-			<div id='rowsContainer'>
-				<div className='rowsInnerContainer'>
-			{rows}
-				</div>
+			<div className='rowsContainer'>
+				
+					{rows}
+				
 			</div>
 		);
 		
 	}	
 }
-
+//<div className='rowsInnerContainer'>
+//</div>
 export default RowsContainer; 

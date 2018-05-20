@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './dominikStyles.css';
+import './Seat.css';
 
 class Seat extends Component {
 	constructor(props) {
@@ -28,7 +28,7 @@ class Seat extends Component {
 	
 	render() {
 		return(
-			<div class='seat' style={{backgroundColor: this.props.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number+1}</div>	
+			<div className='seat' style={{backgroundColor: this.props.bgColor}} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick}>{this.props.number+1}</div>	
 		);
 	}
 }

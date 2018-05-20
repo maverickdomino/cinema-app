@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './dominikStyles.css';
+import './Screen.css';
 
 class Screen extends Component {
 	

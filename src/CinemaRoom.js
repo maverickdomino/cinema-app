@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './dominikStyles.css';
+import './CinemaRoom.css';
 import Screen from './Screen.js';
 import RowsContainer from './RowsContainer.js';
 import Legend from './Legend.js';
@@ -189,14 +189,14 @@ class CinemaRoom extends Component {
 		
 	render() {
 		return (
-			<div>
-				<div>{this.props.title}</div>
-				<div>{this.props.day}, {this.props.hour}</div>
-				<div>Room {this.props.room}</div>
+			<div className="cinemaRoomContainer">
+				<div className="movieTitle">{this.props.title}</div>
+				<div className="movieTime">{this.props.day}, {this.props.hour}</div>
+				<div className="movieRoom">Room {this.props.room}</div>
 				<Screen/>
 				<RowsContainer bgColors={this.state.bgColors} onStateChange={this.handleStateChange} onMouseOverFreePlace={this.handleOnMouseOverFreePlace} onMouseOutFreePlace={this.handleOnMouseOutFreePlace}/>
 				<Legend/>
-				<button onClick={this.myFunction}>Rezerwuj</button> 
+				<div class="reservationButton"><button onClick={this.myFunction}>Rezerwuj</button></div> 
 			</div>
 		);
 	}
