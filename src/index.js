@@ -87,7 +87,7 @@ class App extends Component {
                     <Route path="/informacja" component={Information} />
                     <Route path="/logout" render={(props) => <LogOut authenticated={this.state.authenticated} {...props} />} />
                     <Route path="/repertuar" render={(props) => <Repertuar {...props} onClick={this.handleClick}/> }/>
-                <PrivateRoute path={`/${this.state.id}`} authenticated={authenticated} render={(props) => <CinemaRoom {...props} 
+                <PrivateRoute path={`/${this.state.id}`} authenticated={authenticated} component={(props) => <CinemaRoom {...props} 
                         id={this.state.id} title={this.state.title} day={this.state.day}
                         hour={this.state.hour} room={this.state.room}/> }/>
                 </Switch>
