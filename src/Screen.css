@@ -1,0 +1,45 @@
+.screen
+{
+	background-color: #AAAAAA;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	padding-top: 0.1875em;
+	padding-bottom: 0.1875em;
+	margin: auto;
+	margin-bottom: 2em;
+	width: 70%;
+}
+
+/*@media only screen and (max-width: 600px) {
+    .screen {
+		width: 70%;
+    }
+	
+}
+
+@media only screen and (min-width: 600px) {
+    .screen {
+		width: 60%;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+    .screen {
+		width: 50%;
+	}
+
+} 
+
+@media only screen and (min-width: 992px) {
+    .screen {
+		width: 38%;
+	}
+} 
+
+
+@media only screen and (min-width: 1200px) {
+    .screen {
+		width: 30%;
+	}
+}*/

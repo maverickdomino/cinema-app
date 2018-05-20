@@ -1,0 +1,101 @@
+/*.legendContainer
+{
+	clear: both;
+	margin-top: 1em;
+}*/
+
+.legendTitle
+{
+	text-align: center;
+	margin-bottom: 0.5em;
+	font-weight: bold;
+}
+
+.legendElement 
+{
+	/*clear: both;*/
+	margin-left: 1em;
+}
+
+.legendSeat
+{
+		width: 13px;
+		height: 13px;
+		background-color: blue;
+		/*clear: both;*/
+}
+
+.legendText
+{
+	/*float:left;*/
+	/*margin-left: 0.5em;*/
+	font-size: 13px;
+}
+
+.legendFree
+{
+	background-color: #3355FF;
+}
+
+.legendOccupied
+{
+	background-color: red;
+}
+
+.legendChosen 
+{
+	background-color: green;
+}
+
+/*@media only screen and (min-width: 600px) {
+		.legendElement
+	{
+		float: left;
+		clear: none;
+		width: 33.33%;
+		margin-left: 0;
+	} 
+
+	.legendText
+	{
+		font-size: 15px;
+	}
+
+	.legendSeat
+	{
+		width: 15px;
+		height: 15px;
+	}
+	
+	.container
+	{
+		margin-top: 2em;
+	}
+	
+}*/
+
+/*@media only screen and (min-width: 768px) {
+    .screen {
+		width: 50%;
+	}
+	
+	.legendElements
+	{
+		width: 70%;
+		margin: auto;
+	}
+	
+	.legendText
+	{
+
+		font-size: 16px;
+	}
+
+	.legendSeat
+	{
+		width: 16px;
+		height: 16px;
+	}
+} */
+
+/*test*/

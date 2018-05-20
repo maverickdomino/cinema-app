@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import './AuthForm.css';
 import firebase from './firebase.js';
